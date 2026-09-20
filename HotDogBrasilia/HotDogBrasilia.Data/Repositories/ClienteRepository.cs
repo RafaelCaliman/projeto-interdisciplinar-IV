@@ -19,7 +19,7 @@ namespace HotDogBrasilia.Data.Repositories
             cn.Open();
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = cn;
-            cmd.CommandText = "Select id, nome, email, cpf from usuarios where tipo = 'cliente'";
+            cmd.CommandText = "Select id_cliente, nome , telefone from cliente";
 
             MySqlDataReader resultado = cmd.ExecuteReader();
 
@@ -27,10 +27,9 @@ namespace HotDogBrasilia.Data.Repositories
             {
                 Cliente cliente = new Cliente();
 
-                cliente.Id = Convert.ToInt32(resultado["id"]);
+                cliente.Id = Convert.ToInt32(resultado["id_cliente"]);
                 cliente.Nome = resultado["nome"].ToString();
-                cliente.Email = resultado["email"].ToString();
-                cliente.Cpf = resultado["cpf"].ToString();
+                cliente.Telefone = resultado["telefone"].ToString();
 
                 clientes.Add(cliente);
             }
