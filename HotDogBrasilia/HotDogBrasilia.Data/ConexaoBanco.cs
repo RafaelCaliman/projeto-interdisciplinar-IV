@@ -9,7 +9,13 @@ namespace HotDogBrasilia.Data
 {
     public class ConexaoBanco
     {
-        private const string ConnectionString = "Server=localhost;Database=hotdog;User=root;Password=";
+        private const string Server = "localhost";
+        private const string Database = "hotdog_brasilia";
+        private const string User = "root";
+        private const string Password = "";
+
+        private static string ConnectionString =
+           $"Server={Server};Database={Database};User={User};Password={Password};";
 
         public static MySqlConnection ObterConexao()
         {
