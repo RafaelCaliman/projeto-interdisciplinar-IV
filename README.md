@@ -31,3 +31,30 @@ Término: 18/11/2026
 ## Licença
 
 Projeto acadêmico, de uso restrito ao contexto do Projeto Interdisciplinar IV na UEMG, Unidade Frutal.
+
+## Como Rodar o Projeto
+
+### Pré-requisitos
+- Visual Studio 2022 (ou mais recente), com a carga de trabalho ".NET desktop development"
+- .NET Framework 4.7.2
+- MySQL Server instalado localmente
+
+### 1. Clonar o repositório
+git clone https://github.com/RafaelCaliman/projeto-interdisciplinar-IV.git
+
+### 2. Criar o banco de dados
+Rodar o script que está na pasta `Banco de dados/` no seu MySQL local. Isso cria o banco `hotdog_brasilia` do zero, já com dados de teste.
+
+### 3. Abrir o projeto
+Dentro da pasta clonada, entrar em `HotDogBrasilia/` e abrir o arquivo `HotDogBrasilia.sln`.
+
+### 4. Ajustar a senha do banco
+Abrir `HotDogBrasilia.Data/ConexaoBanco.cs` e trocar a senha pela senha do MySQL da sua máquina.
+
+### 5. Rodar
+O projeto de inicialização já vem configurado como `HotDogBrasilia.UI`. É só apertar **F5** no Visual Studio.
+
+### Estrutura do projeto
+- `HotDogBrasilia.UI` — telas (Windows Forms)
+- `HotDogBrasilia.Domain` — entidades do sistema (Cliente, etc.)
+- `HotDogBrasilia.Data` — conexão com o banco e repositórios
