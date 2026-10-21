@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,75 @@ namespace HotDogBrasilia.Data.Repositories
             return clientes;
 
 
+        }
+
+        public static List<Cliente> listarClientes(string busca)
+        {
+            var lista = new List<Cliente>();
+            using (var conn = ConexaoBanco.ObterConexao())
+            using (var cmd = new MySqlCommand("sp_cliente_listar", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("p_busca",
+                    string.IsNullOrWhiteSpace(busca) ? (object)DBNull.Value : busca.Trim());
+                conn.Open();
+                using (var rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        lista.Add(new Cliente
+                        {
+                            Id = rd.GetInt32("id_cliente"),
+                            Nome = rd.GetString("nome"),
+                            Telefone = rd.GetString("telefone")
+                        });
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public static int inserirCliente(string nome, string telefone)
+        {
+            using (var conn = ConexaoBanco.ObterConexao())
+            using (var cmd = new MySqlCommand("sp_cliente_inserir", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("p_nome", nome);
+                cmd.Parameters.AddWithValue("p_telefone", telefone);
+                var pId = new MySqlParameter("p_id_cliente", MySqlDbType.Int32)
+                    { Direction = ParameterDirection.Output };
+                cmd.Parameters.Add(pId);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                return Convert.ToInt32(pId.Value);
+            }
+        }
+
+        public static void atualizarCliente(int id, string nome, string telefone)
+        {
+            using (var conn = ConexaoBanco.ObterConexao())
+            using (var cmd = new MySqlCommand("sp_cliente_atualizar", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("p_id_cliente", id);
+                cmd.Parameters.AddWithValue("p_nome", nome);
+                cmd.Parameters.AddWithValue("p_telefone", telefone);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void excluirCliente(int id)
+        {
+            using (var conn = ConexaoBanco.ObterConexao())
+            using (var cmd = new MySqlCommand("sp_cliente_excluir", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("p_id_cliente", id);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }
