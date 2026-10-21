@@ -12,17 +12,25 @@ using HotDogBrasilia.Domain;
 
 namespace HotDogBrasilia.UI
 {
-    public partial class Form1 : Form
+    public partial class FrmPrincipal : Form
     {
-        public Form1()
+        public FrmPrincipal()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            List<Cliente> clientes = ClienteRepository.listarClientes();
-            dataGridView1.DataSource = clientes;
+        }
+
+        private void mnuClientes_Click(object sender, EventArgs e)
+        {
+            using (var f = new FrmClientes()) { f.ShowDialog(this); }
+        }
+
+        private void mnuProdutos_Click(object sender, EventArgs e)
+        {
+            using (var f = new FrmProdutos()) { f.ShowDialog(this); }
         }
     }
 }

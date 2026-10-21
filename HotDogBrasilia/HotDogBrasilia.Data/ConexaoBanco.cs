@@ -15,7 +15,7 @@ namespace HotDogBrasilia.Data
         private const string Password = "";
 
         private static string ConnectionString =
-           $"Server={Server};Database={Database};User={User};Password={Password};";
+           $"Server={Server};Database={Database};User={User};Password={Password};Charset=utf8mb4;";
 
         public static MySqlConnection ObterConexao()
         {
