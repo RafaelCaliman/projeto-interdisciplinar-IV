@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using HotDogBrasilia.Data.Repositories;
 using HotDogBrasilia.Domain;
@@ -8,10 +8,16 @@ namespace HotDogBrasilia.UI
     public partial class FrmClientes : Form
     {
         private int idSelecionado = 0;
+        private readonly Timer timerStatus = new Timer { Interval = 4000 };
 
         public FrmClientes()
         {
             InitializeComponent();
+            timerStatus.Tick += (s, e) =>
+            {
+                lblStatus.Text = "";
+                timerStatus.Stop();
+            };
         }
 
         private void FrmClientes_Load(object sender, EventArgs e)
@@ -25,6 +31,13 @@ namespace HotDogBrasilia.UI
             if (dgvClientes.Columns.Contains("Id"))
                 dgvClientes.Columns["Id"].Visible = false;
             dgvClientes.ClearSelection();
+        }
+
+        private void MostrarStatus(string texto)
+        {
+            lblStatus.Text = texto;
+            timerStatus.Stop();
+            timerStatus.Start();
         }
 
         private void Limpar()
@@ -53,6 +66,8 @@ namespace HotDogBrasilia.UI
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            lblStatus.Text = "";
+
             try
             {
                 if (idSelecionado == 0)
@@ -60,7 +75,7 @@ namespace HotDogBrasilia.UI
                 else
                     ClienteRepository.atualizarCliente(idSelecionado, txtNome.Text, mskTelefone.Text);
 
-                lblStatus.Text = "Cliente salvo com sucesso.";
+                MostrarStatus("Cliente salvo com sucesso.");
                 Limpar();
                 CarregarGrade();
             }
@@ -86,10 +101,12 @@ namespace HotDogBrasilia.UI
 
             if (resposta != DialogResult.Yes) return;
 
+            lblStatus.Text = "";
+
             try
             {
                 ClienteRepository.excluirCliente(idSelecionado);
-                lblStatus.Text = "Cliente excluído.";
+                MostrarStatus("Cliente excluído.");
                 Limpar();
                 CarregarGrade();
             }
