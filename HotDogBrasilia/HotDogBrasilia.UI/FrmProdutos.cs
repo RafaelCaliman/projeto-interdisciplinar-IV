@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Windows.Forms;
 using HotDogBrasilia.Data.Repositories;
@@ -10,10 +10,16 @@ namespace HotDogBrasilia.UI
     {
         private int idSelecionado = 0;
         private static readonly CultureInfo PtBr = new CultureInfo("pt-BR");
+        private readonly Timer timerStatus = new Timer { Interval = 4000 };
 
         public FrmProdutos()
         {
             InitializeComponent();
+            timerStatus.Tick += (s, e) =>
+            {
+                lblStatus.Text = "";
+                timerStatus.Stop();
+            };
         }
 
         private void FrmProdutos_Load(object sender, EventArgs e)
@@ -37,6 +43,13 @@ namespace HotDogBrasilia.UI
             if (dgvProdutos.Columns.Contains("Valor"))
                 dgvProdutos.Columns["Valor"].DefaultCellStyle.Format = "C2";
             dgvProdutos.ClearSelection();
+        }
+
+        private void MostrarStatus(string texto)
+        {
+            lblStatus.Text = texto;
+            timerStatus.Stop();
+            timerStatus.Start();
         }
 
         private void Limpar()
@@ -93,6 +106,8 @@ namespace HotDogBrasilia.UI
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            lblStatus.Text = "";
+
             try
             {
                 decimal valor = LerValor();
@@ -106,7 +121,7 @@ namespace HotDogBrasilia.UI
                     ProdutoRepository.atualizarProduto(idSelecionado, txtNome.Text,
                         valor, estoque, idFornecedor);
 
-                lblStatus.Text = "Produto salvo com sucesso.";
+                MostrarStatus("Produto salvo com sucesso.");
                 Limpar();
                 CarregarGrade();
             }
@@ -132,10 +147,12 @@ namespace HotDogBrasilia.UI
 
             if (resposta != DialogResult.Yes) return;
 
+            lblStatus.Text = "";
+
             try
             {
                 ProdutoRepository.excluirProduto(idSelecionado);
-                lblStatus.Text = "Produto excluído.";
+                MostrarStatus("Produto excluído.");
                 Limpar();
                 CarregarGrade();
             }
