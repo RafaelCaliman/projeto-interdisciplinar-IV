@@ -1008,7 +1008,7 @@ BEGIN
     INSERT INTO log_acao (id_usuario, acao, entidade, id_registro)
     VALUES (v_id, 'LOGIN', 'usuario', v_id);
 
-    SELECT u.id_usuario, u.nome, u.login, u.id_perfil, pf.nome AS perfil
+    SELECT u.id_usuario, u.nome, u.login, u.id_perfil,u.ativo,u.ultimo_login, pf.nome AS perfil
     FROM usuario u
     JOIN perfil pf ON pf.id_perfil = u.id_perfil
     WHERE u.id_usuario = v_id;
@@ -1695,3 +1695,9 @@ SELECT (SELECT COUNT(*) FROM cliente)    AS clientes,                -- 3
        (SELECT COUNT(*) FROM financeiro) AS lancamentos,             -- 5
        (SELECT COUNT(*) FROM usuario)    AS usuarios,                -- 3
        (SELECT COUNT(*) FROM log_acao)   AS logs;                    -- 0
+
+
+select * from vw_matriz_permissoes;
+select * from perfil;
+select * from perfil_permissao;
+select * from permissao;
