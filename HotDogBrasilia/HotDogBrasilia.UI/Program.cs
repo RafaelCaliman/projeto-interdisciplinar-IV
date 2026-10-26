@@ -16,6 +16,12 @@ namespace HotDogBrasilia.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            using (FrmLogin login = new FrmLogin())
+            {
+                if (login.ShowDialog() != DialogResult.OK)
+                    return; 
+            }
             Application.Run(new FrmPrincipal());
         }
     }
