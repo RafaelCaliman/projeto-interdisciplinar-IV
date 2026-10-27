@@ -27,6 +27,9 @@ namespace HotDogBrasilia.UI
                 UsuarioLogado = UsuarioRepository.Auth(txtLogin.Text.Trim(), txtSenha.Text);
                 if(UsuarioLogado != null)
                 {
+                    // Carrega as permissões do perfil e guarda na sessão antes de abrir o sistema.
+                    var codigos = PermissaoRepository.listarCodigos(UsuarioLogado.IdUser);
+                    Sessao.Iniciar(UsuarioLogado, codigos);
                     DialogResult = DialogResult.OK;
                 }
                 else
