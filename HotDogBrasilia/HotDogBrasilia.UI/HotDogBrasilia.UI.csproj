@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControleAcesso.cs" />
+    <Compile Include="Erros.cs" />
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>

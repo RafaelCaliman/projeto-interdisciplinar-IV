@@ -21,19 +21,26 @@ namespace HotDogBrasilia.UI
 
         private void FrmVenda_Load(object sender, EventArgs e)
         {
-            cboCliente.DisplayMember = "Nome";
-            cboCliente.ValueMember = "Id";
-            cboCliente.DataSource = ClienteRepository.listarClientes(null);
-            cboCliente.SelectedIndex = -1;
-
             cboPagamento.Items.Add("PAGO");
             cboPagamento.Items.Add("PENDENTE");
             cboPagamento.SelectedIndex = 0;
 
             btnFinalizar.Enabled = Sessao.TemPermissao(Permissoes.VendaRegistrar);
-
-            CarregarProdutos();
             AtualizarCarrinho();
+
+            try
+            {
+                cboCliente.DisplayMember = "Nome";
+                cboCliente.ValueMember = "Id";
+                cboCliente.DataSource = ClienteRepository.listarClientes(null);
+                cboCliente.SelectedIndex = -1;
+
+                CarregarProdutos();
+            }
+            catch (Exception ex)
+            {
+                Erros.Mostrar(ex);
+            }
         }
 
         // Recarrega os produtos para mostrar o estoque atualizado.
@@ -158,8 +165,7 @@ namespace HotDogBrasilia.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Erros.Mostrar(ex);
             }
         }
 
