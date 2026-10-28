@@ -37,9 +37,9 @@ namespace HotDogBrasilia.UI
                     MessageBox.Show("Não foi Possível efetuar o Login.");
                 }
 
-            } catch (MySqlException ex)
+            } catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Erros.Mostrar(ex);
             }
         }
     }

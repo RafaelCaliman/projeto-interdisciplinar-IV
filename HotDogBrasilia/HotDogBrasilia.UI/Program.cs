@@ -17,6 +17,11 @@ namespace HotDogBrasilia.UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            // Rede de segurança: qualquer erro não tratado nas telas vira uma
+            // mensagem, em vez de fechar o programa.
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            Application.ThreadException += (s, e) => Erros.Mostrar(e.Exception);
+
             using (FrmLogin login = new FrmLogin())
             {
                 if (login.ShowDialog() != DialogResult.OK)

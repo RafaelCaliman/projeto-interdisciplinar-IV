@@ -53,8 +53,7 @@ namespace HotDogBrasilia.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Erros.Mostrar(ex);
             }
         }
 
@@ -104,8 +103,7 @@ namespace HotDogBrasilia.UI
             catch (Exception ex)
             {
                 // Ex.: outra pessoa cancelou esta venda enquanto a tela estava aberta.
-                MessageBox.Show(ex.Message, "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Erros.Mostrar(ex);
                 CarregarVendas();
             }
         }
@@ -144,8 +142,7 @@ namespace HotDogBrasilia.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Erros.Mostrar(ex);
                 CarregarVendas();
             }
         }

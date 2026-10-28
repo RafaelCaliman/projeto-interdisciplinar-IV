@@ -23,7 +23,15 @@ namespace HotDogBrasilia.UI
         private void FrmClientes_Load(object sender, EventArgs e)
         {
             AplicarPermissoes();
-            CarregarGrade();
+
+            try
+            {
+                CarregarGrade();
+            }
+            catch (Exception ex)
+            {
+                Erros.Mostrar(ex);
+            }
         }
 
         // Desliga os botões que o usuário logado não pode usar.
@@ -92,8 +100,7 @@ namespace HotDogBrasilia.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Erros.Mostrar(ex);
             }
         }
 
@@ -125,8 +132,7 @@ namespace HotDogBrasilia.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Erros.Mostrar(ex);
             }
         }
     }

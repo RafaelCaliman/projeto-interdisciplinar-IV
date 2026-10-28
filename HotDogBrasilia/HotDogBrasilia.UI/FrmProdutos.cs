@@ -24,12 +24,20 @@ namespace HotDogBrasilia.UI
 
         private void FrmProdutos_Load(object sender, EventArgs e)
         {
-            cboFornecedor.DisplayMember = "Nome";
-            cboFornecedor.ValueMember = "IdFornecedor";
-            cboFornecedor.DataSource = FornecedorRepository.listarFornecedores();
-            cboFornecedor.SelectedIndex = -1;
             AplicarPermissoes();
-            CarregarGrade();
+
+            try
+            {
+                cboFornecedor.DisplayMember = "Nome";
+                cboFornecedor.ValueMember = "IdFornecedor";
+                cboFornecedor.DataSource = FornecedorRepository.listarFornecedores();
+                cboFornecedor.SelectedIndex = -1;
+                CarregarGrade();
+            }
+            catch (Exception ex)
+            {
+                Erros.Mostrar(ex);
+            }
         }
 
         // Desliga os botões que o usuário logado não pode usar.
@@ -93,7 +101,14 @@ namespace HotDogBrasilia.UI
 
         private void txtBusca_TextChanged(object sender, EventArgs e)
         {
-            CarregarGrade();
+            try
+            {
+                CarregarGrade();
+            }
+            catch (Exception ex)
+            {
+                Erros.Mostrar(ex);
+            }
         }
 
         private void dgvProdutos_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -138,8 +153,7 @@ namespace HotDogBrasilia.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Erros.Mostrar(ex);
             }
         }
 
@@ -171,8 +185,7 @@ namespace HotDogBrasilia.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Atenção",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Erros.Mostrar(ex);
             }
         }
     }
