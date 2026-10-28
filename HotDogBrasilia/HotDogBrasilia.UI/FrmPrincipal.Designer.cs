@@ -32,13 +32,17 @@
             this.mnuCadastros = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProdutos = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuVendas = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuNovaVenda = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuConsultarVendas = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             //
             // menuStrip1
             //
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuCadastros});
+            this.mnuCadastros,
+            this.mnuVendas});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -68,6 +72,29 @@
             this.mnuProdutos.Text = "Produtos";
             this.mnuProdutos.Click += new System.EventHandler(this.mnuProdutos_Click);
             //
+            // mnuVendas
+            //
+            this.mnuVendas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuNovaVenda,
+            this.mnuConsultarVendas});
+            this.mnuVendas.Name = "mnuVendas";
+            this.mnuVendas.Size = new System.Drawing.Size(56, 20);
+            this.mnuVendas.Text = "Vendas";
+            //
+            // mnuNovaVenda
+            //
+            this.mnuNovaVenda.Name = "mnuNovaVenda";
+            this.mnuNovaVenda.Size = new System.Drawing.Size(180, 22);
+            this.mnuNovaVenda.Text = "Nova venda";
+            this.mnuNovaVenda.Click += new System.EventHandler(this.mnuNovaVenda_Click);
+            //
+            // mnuConsultarVendas
+            //
+            this.mnuConsultarVendas.Name = "mnuConsultarVendas";
+            this.mnuConsultarVendas.Size = new System.Drawing.Size(180, 22);
+            this.mnuConsultarVendas.Text = "Consultar vendas";
+            this.mnuConsultarVendas.Click += new System.EventHandler(this.mnuConsultarVendas_Click);
+            //
             // FrmPrincipal
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -93,5 +120,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuCadastros;
         private System.Windows.Forms.ToolStripMenuItem mnuClientes;
         private System.Windows.Forms.ToolStripMenuItem mnuProdutos;
+        private System.Windows.Forms.ToolStripMenuItem mnuVendas;
+        private System.Windows.Forms.ToolStripMenuItem mnuNovaVenda;
+        private System.Windows.Forms.ToolStripMenuItem mnuConsultarVendas;
     }
 }

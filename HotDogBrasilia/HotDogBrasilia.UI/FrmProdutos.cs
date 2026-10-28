@@ -28,7 +28,17 @@ namespace HotDogBrasilia.UI
             cboFornecedor.ValueMember = "IdFornecedor";
             cboFornecedor.DataSource = FornecedorRepository.listarFornecedores();
             cboFornecedor.SelectedIndex = -1;
+            AplicarPermissoes();
             CarregarGrade();
+        }
+
+        // Desliga os botões que o usuário logado não pode usar.
+        private void AplicarPermissoes()
+        {
+            bool podeGravar = Sessao.TemPermissao(Permissoes.ProdutoGravar);
+            btnNovo.Enabled = podeGravar;
+            btnSalvar.Enabled = podeGravar;
+            btnExcluir.Enabled = Sessao.TemPermissao(Permissoes.ProdutoExcluir);
         }
 
         private void CarregarGrade()
@@ -106,6 +116,7 @@ namespace HotDogBrasilia.UI
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.Verificar(Permissoes.ProdutoGravar)) return;
             lblStatus.Text = "";
 
             try
@@ -134,6 +145,8 @@ namespace HotDogBrasilia.UI
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.Verificar(Permissoes.ProdutoExcluir)) return;
+
             if (idSelecionado == 0)
             {
                 MessageBox.Show("Selecione um produto na lista.", "Atenção",
