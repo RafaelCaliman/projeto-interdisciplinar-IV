@@ -43,11 +43,13 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="Fornecedor.cs" />
+    <Compile Include="ItemVenda.cs" />
     <Compile Include="Permissoes.cs" />
     <Compile Include="Produto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sessao.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="Venda.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
