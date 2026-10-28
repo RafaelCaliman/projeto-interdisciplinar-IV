@@ -92,6 +92,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControleAcesso.cs" />
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +117,18 @@
     <Compile Include="FrmProdutos.Designer.cs">
       <DependentUpon>FrmProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmVenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVenda.Designer.cs">
+      <DependentUpon>FrmVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmVendas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVendas.Designer.cs">
+      <DependentUpon>FrmVendas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmLogin.resx">
@@ -129,6 +142,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProdutos.resx">
       <DependentUpon>FrmProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVenda.resx">
+      <DependentUpon>FrmVenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVendas.resx">
+      <DependentUpon>FrmVendas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

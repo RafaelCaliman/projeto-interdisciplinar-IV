@@ -22,7 +22,17 @@ namespace HotDogBrasilia.UI
 
         private void FrmClientes_Load(object sender, EventArgs e)
         {
+            AplicarPermissoes();
             CarregarGrade();
+        }
+
+        // Desliga os botões que o usuário logado não pode usar.
+        private void AplicarPermissoes()
+        {
+            bool podeGravar = Sessao.TemPermissao(Permissoes.ClienteGravar);
+            btnNovo.Enabled = podeGravar;
+            btnSalvar.Enabled = podeGravar;
+            btnExcluir.Enabled = Sessao.TemPermissao(Permissoes.ClienteExcluir);
         }
 
         private void CarregarGrade()
@@ -66,6 +76,7 @@ namespace HotDogBrasilia.UI
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.Verificar(Permissoes.ClienteGravar)) return;
             lblStatus.Text = "";
 
             try
@@ -88,6 +99,8 @@ namespace HotDogBrasilia.UI
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.Verificar(Permissoes.ClienteExcluir)) return;
+
             if (idSelecionado == 0)
             {
                 MessageBox.Show("Selecione um cliente na lista.", "Atenção",
