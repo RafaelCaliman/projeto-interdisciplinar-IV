@@ -13,6 +13,8 @@ namespace HotDogBrasilia.UI
         public FrmLogin()
         {
             InitializeComponent();
+
+            txtSenha.UseSystemPasswordChar = true;
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
@@ -41,6 +43,11 @@ namespace HotDogBrasilia.UI
             {
                 Erros.Mostrar(ex);
             }
+        }
+
+        private void txtSenha_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
