@@ -35,6 +35,9 @@
             this.mnuVendas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNovaVenda = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuConsultarVendas = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSistema = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTrocarUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSair = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             //
@@ -42,7 +45,8 @@
             //
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuCadastros,
-            this.mnuVendas});
+            this.mnuVendas,
+            this.mnuSistema});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -95,6 +99,29 @@
             this.mnuConsultarVendas.Text = "Consultar vendas";
             this.mnuConsultarVendas.Click += new System.EventHandler(this.mnuConsultarVendas_Click);
             //
+            // mnuSistema
+            //
+            this.mnuSistema.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuTrocarUsuario,
+            this.mnuSair});
+            this.mnuSistema.Name = "mnuSistema";
+            this.mnuSistema.Size = new System.Drawing.Size(66, 21);
+            this.mnuSistema.Text = "Sistema";
+            //
+            // mnuTrocarUsuario
+            //
+            this.mnuTrocarUsuario.Name = "mnuTrocarUsuario";
+            this.mnuTrocarUsuario.Size = new System.Drawing.Size(180, 22);
+            this.mnuTrocarUsuario.Text = "Trocar usuário";
+            this.mnuTrocarUsuario.Click += new System.EventHandler(this.mnuTrocarUsuario_Click);
+            //
+            // mnuSair
+            //
+            this.mnuSair.Name = "mnuSair";
+            this.mnuSair.Size = new System.Drawing.Size(180, 22);
+            this.mnuSair.Text = "Sair";
+            this.mnuSair.Click += new System.EventHandler(this.mnuSair_Click);
+            //
             // FrmPrincipal
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -106,6 +133,7 @@
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hot-dog Brasília";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPrincipal_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -123,5 +151,8 @@
         private System.Windows.Forms.ToolStripMenuItem mnuVendas;
         private System.Windows.Forms.ToolStripMenuItem mnuNovaVenda;
         private System.Windows.Forms.ToolStripMenuItem mnuConsultarVendas;
+        private System.Windows.Forms.ToolStripMenuItem mnuSistema;
+        private System.Windows.Forms.ToolStripMenuItem mnuTrocarUsuario;
+        private System.Windows.Forms.ToolStripMenuItem mnuSair;
     }
 }

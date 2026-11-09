@@ -14,6 +14,9 @@ namespace HotDogBrasilia.UI
 {
     public partial class FrmPrincipal : Form
     {
+        // O Program.cs lê esta propriedade para saber se volta para o login.
+        public bool TrocarUsuario { get; private set; }
+
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -21,7 +24,29 @@ namespace HotDogBrasilia.UI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Text = "Hot-dog Brasília — " + Sessao.Usuario.Nome;
             AplicarPermissoes();
+        }
+
+        private void mnuTrocarUsuario_Click(object sender, EventArgs e)
+        {
+            TrocarUsuario = true;
+            Close();
+        }
+
+        private void mnuSair_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        // Vale para "Sair", "Trocar usuário" e para o X da janela:
+        // registra a saída e limpa a sessão do usuário.
+        private void FrmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Sessao.Usuario == null) return;
+
+            Auditoria.Registrar("LOGOUT", "usuario", Sessao.Usuario.IdUser, null);
+            Sessao.Encerrar();
         }
 
         // Esconde os menus que o usuário logado não pode acessar.

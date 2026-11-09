@@ -22,12 +22,26 @@ namespace HotDogBrasilia.UI
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.ThreadException += (s, e) => Erros.Mostrar(e.Exception);
 
-            using (FrmLogin login = new FrmLogin())
+            // Erros fora das telas (outras threads): ao menos avisa o usuário.
+            AppDomain.CurrentDomain.UnhandledException +=
+                (s, e) => Erros.Mostrar(e.ExceptionObject as Exception);
+
+            // Repete enquanto o usuário escolher "Trocar usuário".
+            while (true)
             {
-                if (login.ShowDialog() != DialogResult.OK)
-                    return; 
+                using (FrmLogin login = new FrmLogin())
+                {
+                    if (login.ShowDialog() != DialogResult.OK)
+                        return;
+                }
+
+                using (FrmPrincipal principal = new FrmPrincipal())
+                {
+                    Application.Run(principal);
+                    if (!principal.TrocarUsuario)
+                        return;
+                }
             }
-            Application.Run(new FrmPrincipal());
         }
     }
 }
