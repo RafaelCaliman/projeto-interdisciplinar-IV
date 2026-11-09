@@ -43,7 +43,7 @@ Projeto acadêmico, de uso restrito ao contexto do Projeto Interdisciplinar IV n
 git clone https://github.com/RafaelCaliman/projeto-interdisciplinar-IV.git
 
 ### 2. Criar o banco de dados
-Rodar o script que está na pasta `Banco de dados/` no seu MySQL local. Isso cria o banco `hotdog_brasilia` do zero, já com dados de teste.
+Rodar o script `DataBase/hotdog_brasilia_v4_banco_final.sql` no seu MySQL local (por exemplo, no MySQL Workbench). Isso cria o banco `hotdog_brasilia` do zero, já com dados de teste e com os usuários `admin`, `operador` e `gerencia` (as senhas iniciais estão no próprio script; troque-as antes da apresentação, seção 10 do script).
 
 ### 3. Abrir o projeto
 Dentro da pasta clonada, entrar em `HotDogBrasilia/` e abrir o arquivo `HotDogBrasilia.sln`.
