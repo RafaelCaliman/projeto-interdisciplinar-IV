@@ -55,8 +55,11 @@ namespace HotDogBrasilia.UI
 
         private void AtualizarCarrinho()
         {
+            // Liga a grade a uma CÓPIA da lista. Se ligar sempre na mesma lista,
+            // o Windows Forms guarda a posição antiga (-1, de quando estava vazia)
+            // e o clique na linha dá o erro "O índice -1 não tem um valor".
             dgvItens.DataSource = null;
-            dgvItens.DataSource = carrinho;
+            dgvItens.DataSource = new List<ItemVenda>(carrinho);
             if (dgvItens.Columns.Contains("IdItem"))
                 dgvItens.Columns["IdItem"].Visible = false;
             if (dgvItens.Columns.Contains("IdProduto"))
