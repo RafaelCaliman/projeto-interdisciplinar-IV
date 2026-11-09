@@ -90,9 +90,15 @@ namespace HotDogBrasilia.UI
             try
             {
                 if (idSelecionado == 0)
-                    ClienteRepository.inserirCliente(txtNome.Text, mskTelefone.Text);
+                {
+                    int novoId = ClienteRepository.inserirCliente(txtNome.Text, mskTelefone.Text);
+                    Auditoria.Registrar("INSERIR", "cliente", novoId, txtNome.Text.Trim());
+                }
                 else
+                {
                     ClienteRepository.atualizarCliente(idSelecionado, txtNome.Text, mskTelefone.Text);
+                    Auditoria.Registrar("ATUALIZAR", "cliente", idSelecionado, txtNome.Text.Trim());
+                }
 
                 MostrarStatus("Cliente salvo com sucesso.");
                 Limpar();
@@ -126,6 +132,7 @@ namespace HotDogBrasilia.UI
             try
             {
                 ClienteRepository.excluirCliente(idSelecionado);
+                Auditoria.Registrar("EXCLUIR", "cliente", idSelecionado, txtNome.Text.Trim());
                 MostrarStatus("Cliente excluído.");
                 Limpar();
                 CarregarGrade();

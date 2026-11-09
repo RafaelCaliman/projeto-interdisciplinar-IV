@@ -142,10 +142,16 @@ namespace HotDogBrasilia.UI
                     ? (int?)null : (int)cboFornecedor.SelectedValue;
 
                 if (idSelecionado == 0)
-                    ProdutoRepository.inserirProduto(txtNome.Text, valor, estoque, idFornecedor);
+                {
+                    int novoId = ProdutoRepository.inserirProduto(txtNome.Text, valor, estoque, idFornecedor);
+                    Auditoria.Registrar("INSERIR", "produto", novoId, txtNome.Text.Trim());
+                }
                 else
+                {
                     ProdutoRepository.atualizarProduto(idSelecionado, txtNome.Text,
                         valor, estoque, idFornecedor);
+                    Auditoria.Registrar("ATUALIZAR", "produto", idSelecionado, txtNome.Text.Trim());
+                }
 
                 MostrarStatus("Produto salvo com sucesso.");
                 Limpar();
@@ -179,6 +185,7 @@ namespace HotDogBrasilia.UI
             try
             {
                 ProdutoRepository.excluirProduto(idSelecionado);
+                Auditoria.Registrar("EXCLUIR", "produto", idSelecionado, txtNome.Text.Trim());
                 MostrarStatus("Produto excluído.");
                 Limpar();
                 CarregarGrade();

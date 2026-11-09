@@ -92,6 +92,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auditoria.cs" />
     <Compile Include="ControleAcesso.cs" />
     <Compile Include="Erros.cs" />
     <Compile Include="FrmLogin.cs">
