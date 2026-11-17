@@ -67,6 +67,8 @@ namespace HotDogBrasilia.UI
             mnuNovaVenda.Visible = podeNovaVenda;
             mnuConsultarVendas.Visible = podeConsultarVendas;
             mnuVendas.Visible = podeNovaVenda || podeConsultarVendas;
+
+            mnuRelatorios.Visible = Sessao.TemPermissao(Permissoes.RelatorioVer);
         }
 
         private void mnuClientes_Click(object sender, EventArgs e)
@@ -87,6 +89,21 @@ namespace HotDogBrasilia.UI
         private void mnuConsultarVendas_Click(object sender, EventArgs e)
         {
             using (var f = new FrmVendas()) { f.ShowDialog(this); }
+        }
+
+        private void mnuRelVendas_Click(object sender, EventArgs e)
+        {
+            using (var f = new FrmRelatorioVendas()) { f.ShowDialog(this); }
+        }
+
+        private void mnuRelEstoque_Click(object sender, EventArgs e)
+        {
+            using (var f = new FrmRelatorioEstoque()) { f.ShowDialog(this); }
+        }
+
+        private void mnuRelFinanceiro_Click(object sender, EventArgs e)
+        {
+            using (var f = new FrmRelatorioFinanceiro()) { f.ShowDialog(this); }
         }
     }
 }
