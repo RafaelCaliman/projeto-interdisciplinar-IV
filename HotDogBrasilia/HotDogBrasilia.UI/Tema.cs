@@ -1,0 +1,70 @@
+using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+
+namespace HotDogBrasilia.UI
+{
+    // Cores e ajustes visuais comuns, para as telas parecerem da mesma família
+    // (mesmo vermelho da tela de login).
+    public static class Tema
+    {
+        public static readonly Color Vermelho = Color.FromArgb(196, 48, 43);
+        public static readonly Color VermelhoEscuro = Color.FromArgb(140, 30, 28);
+        public static readonly Color Creme = Color.FromArgb(255, 224, 178);
+        public static readonly Color FundoClaro = Color.FromArgb(248, 246, 244);
+        public static readonly Color Borda = Color.FromArgb(220, 220, 220);
+        public static readonly Color TextoEscuro = Color.FromArgb(64, 64, 64);
+        public static readonly Color Sucesso = Color.FromArgb(27, 110, 46);
+        public static readonly Color Erro = Color.FromArgb(160, 30, 30);
+        public static readonly Color AmbarFundo = Color.FromArgb(255, 236, 179);
+        public static readonly Color VermelhoFundo = Color.FromArgb(255, 205, 205);
+
+        // Grade somente leitura, linha inteira selecionada e cabeçalho em negrito.
+        public static void Grade(DataGridView g)
+        {
+            g.ReadOnly = true;
+            g.AllowUserToAddRows = false;
+            g.AllowUserToDeleteRows = false;
+            g.AllowUserToResizeRows = false;
+            g.MultiSelect = false;
+            g.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            g.RowHeadersVisible = false;
+            g.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            g.BackgroundColor = Color.White;
+            g.BorderStyle = BorderStyle.None;
+            g.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            g.GridColor = Borda;
+            g.EnableHeadersVisualStyles = false;
+            g.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            g.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            g.ColumnHeadersHeight = 34;
+            g.ColumnHeadersDefaultCellStyle.BackColor = FundoClaro;
+            g.ColumnHeadersDefaultCellStyle.ForeColor = TextoEscuro;
+            g.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            g.ColumnHeadersDefaultCellStyle.SelectionBackColor = FundoClaro;
+            g.RowTemplate.Height = 28;
+            g.DefaultCellStyle.SelectionBackColor = Creme;
+            g.DefaultCellStyle.SelectionForeColor = Color.Black;
+            g.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(252, 251, 250);
+        }
+
+        // Coluna de moeda: formato R$ e alinhada à direita.
+        public static void ColunaMoeda(DataGridViewColumn c)
+        {
+            c.DefaultCellStyle.Format = "C2";
+            c.DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("pt-BR");
+            c.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            c.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+        }
+
+        // Texto de dica dentro do TextBox (o .NET Framework não tem PlaceholderText).
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        private static extern System.IntPtr SendMessage(System.IntPtr h, int msg, int wp, string lp);
+        private const int EM_SETCUEBANNER = 0x1501;
+
+        public static void Dica(TextBox caixa, string texto)
+        {
+            SendMessage(caixa.Handle, EM_SETCUEBANNER, 1, texto);
+        }
+    }
+}
