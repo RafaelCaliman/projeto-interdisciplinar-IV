@@ -29,7 +29,7 @@ namespace HotDogBrasilia.Data.Repositories
                     decimal total = concluirVenda(conn, tx, idVenda, statusPagamento);
 
                     LogRepository.registrar(conn, tx, idUsuario, "INSERIR", "venda", idVenda,
-                        itens.Count + " item(ns) - total R$ " + total.ToString("N2"));
+                        itens.Count + " item(ns) - total R$ " + total.ToString("N2", new System.Globalization.CultureInfo("pt-BR")));
 
                     tx.Commit();
                     return new Venda { IdVenda = idVenda, Total = total };
@@ -71,15 +71,17 @@ namespace HotDogBrasilia.Data.Repositories
             }
         }
 
-        public static List<Venda> listarVendas(DateTime dataInicio, DateTime dataFim)
+        public static List<Venda> listarVendas(DateTime? dataInicio, DateTime? dataFim)
         {
             var lista = new List<Venda>();
             using (var conn = ConexaoBanco.ObterConexao())
-            using (var cmd = new MySqlCommand("sp_relatorio_vendas", conn))
+            using (var cmd = new MySqlCommand("sp_venda_listar", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("p_data_ini", dataInicio.Date);
-                cmd.Parameters.AddWithValue("p_data_fim", dataFim.Date);
+                cmd.Parameters.AddWithValue("p_data_ini",
+                    dataInicio.HasValue ? (object)dataInicio.Value.Date : DBNull.Value);
+                cmd.Parameters.AddWithValue("p_data_fim",
+                    dataFim.HasValue ? (object)dataFim.Value.Date : DBNull.Value);
                 conn.Open();
                 using (var rd = cmd.ExecuteReader())
                 {
@@ -90,7 +92,8 @@ namespace HotDogBrasilia.Data.Repositories
                             IdVenda = rd.GetInt32("id_venda"),
                             DataHora = rd.GetDateTime("data_hora"),
                             NomeCliente = rd.GetString("cliente"),
-                            Total = rd.GetDecimal("total")
+                            Total = rd.GetDecimal("total"),
+                            Situacao = rd.GetString("situacao")
                         });
                     }
                 }

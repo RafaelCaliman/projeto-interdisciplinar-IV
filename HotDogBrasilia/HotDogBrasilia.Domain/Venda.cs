@@ -8,5 +8,6 @@ namespace HotDogBrasilia.Domain
         public DateTime DataHora { get; set; }
         public string NomeCliente { get; set; }
         public decimal Total { get; set; }
+        public string Situacao { get; set; }
     }
 }

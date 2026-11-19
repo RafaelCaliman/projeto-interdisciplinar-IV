@@ -37,6 +37,26 @@ namespace HotDogBrasilia.Data.Repositories
             return lista;
         }
 
+        public static Cliente clienteBalcao()
+        {
+            using (var conn = ConexaoBanco.ObterConexao())
+            using (var cmd = new MySqlCommand("sp_cliente_balcao", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+                using (var rd = cmd.ExecuteReader())
+                {
+                    if (!rd.Read()) return null;
+                    return new Cliente
+                    {
+                        Id = rd.GetInt32("id_cliente"),
+                        Nome = rd.GetString("nome"),
+                        Telefone = rd.GetString("telefone")
+                    };
+                }
+            }
+        }
+
         public static int inserirCliente(string nome, string telefone)
         {
             using (var conn = ConexaoBanco.ObterConexao())

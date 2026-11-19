@@ -24,9 +24,12 @@ namespace HotDogBrasilia.UI
 
         private void FrmVendas_Load(object sender, EventArgs e)
         {
-            dtpInicio.Value = DateTime.Today.AddDays(-30);
+            dtpInicio.Value = DateTime.Today;
             dtpFim.Value = DateTime.Today;
+            dtpInicio.Checked = false;
+            dtpFim.Checked = false;
             btnCancelarVenda.Enabled = Sessao.TemPermissao(Permissoes.VendaCancelar);
+            dgvVendas.CellFormatting += dgvVendas_CellFormatting;
             CarregarVendas();
         }
 
@@ -35,9 +38,21 @@ namespace HotDogBrasilia.UI
             vendaSelecionada = null;
             dgvItens.DataSource = null;
 
+            if (dtpInicio.Checked && dtpFim.Checked && dtpInicio.Value.Date > dtpFim.Value.Date)
+            {
+                dgvVendas.DataSource = null;
+                MessageBox.Show("A data inicial não pode ser maior que a data final.", "Atenção",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtpInicio.Focus();
+                return;
+            }
+
+            DateTime? ini = dtpInicio.Checked ? dtpInicio.Value.Date : (DateTime?)null;
+            DateTime? fim = dtpFim.Checked ? dtpFim.Value.Date : (DateTime?)null;
+
             try
             {
-                dgvVendas.DataSource = VendaRepository.listarVendas(dtpInicio.Value, dtpFim.Value);
+                dgvVendas.DataSource = VendaRepository.listarVendas(ini, fim);
                 if (dgvVendas.Columns.Contains("IdVenda"))
                     dgvVendas.Columns["IdVenda"].HeaderText = "Nº";
                 if (dgvVendas.Columns.Contains("DataHora"))
@@ -49,12 +64,22 @@ namespace HotDogBrasilia.UI
                     dgvVendas.Columns["NomeCliente"].HeaderText = "Cliente";
                 if (dgvVendas.Columns.Contains("Total"))
                     dgvVendas.Columns["Total"].DefaultCellStyle.Format = "C2";
+                if (dgvVendas.Columns.Contains("Situacao"))
+                    dgvVendas.Columns["Situacao"].HeaderText = "Situação";
                 dgvVendas.ClearSelection();
             }
             catch (Exception ex)
             {
                 Erros.Mostrar(ex);
             }
+        }
+
+        private void dgvVendas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || dgvVendas.Columns[e.ColumnIndex].Name != "Situacao") return;
+            string s = Convert.ToString(e.Value);
+            if (s == "CONCLUIDA") { e.Value = "Concluída"; e.FormattingApplied = true; }
+            else if (s == "EM_ANDAMENTO") { e.Value = "Em andamento"; e.FormattingApplied = true; }
         }
 
         private void CarregarItens(int idVenda)

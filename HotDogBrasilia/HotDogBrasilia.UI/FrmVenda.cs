@@ -14,6 +14,8 @@ namespace HotDogBrasilia.UI
         // Itens da venda em montagem. Só vão para o banco ao finalizar.
         private List<ItemVenda> carrinho = new List<ItemVenda>();
 
+        private int? idClienteBalcao = null;
+
         public FrmVenda()
         {
             InitializeComponent();
@@ -40,7 +42,42 @@ namespace HotDogBrasilia.UI
             catch (Exception ex)
             {
                 Erros.Mostrar(ex);
+                return;
             }
+
+            CarregarClienteBalcao();
+        }
+
+        private void CarregarClienteBalcao()
+        {
+            try
+            {
+                Cliente balcao = ClienteRepository.clienteBalcao();
+                idClienteBalcao = balcao == null ? (int?)null : balcao.Id;
+            }
+            catch (Exception ex)
+            {
+                Erros.Mostrar(ex);
+                return;
+            }
+
+            if (idClienteBalcao == null)
+            {
+                MessageBox.Show("O Cliente balcão não foi encontrado no banco.\n"
+                    + "Selecione o cliente da venda na lista.", "Atenção",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            SelecionarClienteBalcao();
+        }
+
+        private void SelecionarClienteBalcao()
+        {
+            if (idClienteBalcao == null)
+                cboCliente.SelectedIndex = -1;
+            else
+                cboCliente.SelectedValue = idClienteBalcao.Value;
         }
 
         // Recarrega os produtos para mostrar o estoque atualizado.
@@ -84,7 +121,7 @@ namespace HotDogBrasilia.UI
         private void NovaVenda()
         {
             carrinho.Clear();
-            cboCliente.SelectedIndex = -1;
+            SelecionarClienteBalcao();
             cboPagamento.SelectedIndex = 0;
             nudQuantidade.Value = 1;
             CarregarProdutos();

@@ -56,13 +56,14 @@
             this.dtpInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpInicio.Location = new System.Drawing.Point(20, 37);
             this.dtpInicio.Name = "dtpInicio";
-            this.dtpInicio.Size = new System.Drawing.Size(130, 23);
+            this.dtpInicio.ShowCheckBox = true;
+            this.dtpInicio.Size = new System.Drawing.Size(150, 23);
             this.dtpInicio.TabIndex = 1;
             //
             // lblFim
             //
             this.lblFim.AutoSize = true;
-            this.lblFim.Location = new System.Drawing.Point(165, 15);
+            this.lblFim.Location = new System.Drawing.Point(185, 15);
             this.lblFim.Name = "lblFim";
             this.lblFim.Size = new System.Drawing.Size(32, 19);
             this.lblFim.TabIndex = 2;
@@ -71,14 +72,15 @@
             // dtpFim
             //
             this.dtpFim.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFim.Location = new System.Drawing.Point(165, 37);
+            this.dtpFim.Location = new System.Drawing.Point(185, 37);
             this.dtpFim.Name = "dtpFim";
-            this.dtpFim.Size = new System.Drawing.Size(130, 23);
+            this.dtpFim.ShowCheckBox = true;
+            this.dtpFim.Size = new System.Drawing.Size(150, 23);
             this.dtpFim.TabIndex = 3;
             //
             // btnBuscar
             //
-            this.btnBuscar.Location = new System.Drawing.Point(310, 34);
+            this.btnBuscar.Location = new System.Drawing.Point(350, 34);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(90, 30);
             this.btnBuscar.TabIndex = 4;
