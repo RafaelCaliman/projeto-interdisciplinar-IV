@@ -28,6 +28,9 @@ namespace HotDogBrasilia.UI
         /// </summary>
         private void InitializeComponent()
         {
+            this.pnlTopo = new System.Windows.Forms.Panel();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.lblSubtitulo = new System.Windows.Forms.Label();
             this.lblBusca = new System.Windows.Forms.Label();
             this.txtBusca = new System.Windows.Forms.TextBox();
             this.lblNome = new System.Windows.Forms.Label();
@@ -39,12 +42,13 @@ namespace HotDogBrasilia.UI
             this.lblVazio = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFornecedores)).BeginInit();
+            this.pnlTopo.SuspendLayout();
             this.SuspendLayout();
             //
             // lblBusca
             //
             this.lblBusca.AutoSize = true;
-            this.lblBusca.Location = new System.Drawing.Point(20, 15);
+            this.lblBusca.Location = new System.Drawing.Point(20, 87);
             this.lblBusca.Name = "lblBusca";
             this.lblBusca.Size = new System.Drawing.Size(113, 19);
             this.lblBusca.TabIndex = 0;
@@ -52,7 +56,7 @@ namespace HotDogBrasilia.UI
             //
             // txtBusca
             //
-            this.txtBusca.Location = new System.Drawing.Point(20, 37);
+            this.txtBusca.Location = new System.Drawing.Point(20, 109);
             this.txtBusca.MaxLength = 100;
             this.txtBusca.Name = "txtBusca";
             this.txtBusca.Size = new System.Drawing.Size(300, 23);
@@ -62,7 +66,7 @@ namespace HotDogBrasilia.UI
             // lblNome
             //
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(20, 75);
+            this.lblNome.Location = new System.Drawing.Point(20, 147);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(48, 19);
             this.lblNome.TabIndex = 2;
@@ -70,7 +74,7 @@ namespace HotDogBrasilia.UI
             //
             // txtNome
             //
-            this.txtNome.Location = new System.Drawing.Point(20, 97);
+            this.txtNome.Location = new System.Drawing.Point(20, 169);
             this.txtNome.MaxLength = 100;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(300, 23);
@@ -78,7 +82,7 @@ namespace HotDogBrasilia.UI
             //
             // btnNovo
             //
-            this.btnNovo.Location = new System.Drawing.Point(20, 137);
+            this.btnNovo.Location = new System.Drawing.Point(20, 209);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(90, 30);
             this.btnNovo.TabIndex = 4;
@@ -88,7 +92,7 @@ namespace HotDogBrasilia.UI
             //
             // btnSalvar
             //
-            this.btnSalvar.Location = new System.Drawing.Point(120, 137);
+            this.btnSalvar.Location = new System.Drawing.Point(120, 209);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(90, 30);
             this.btnSalvar.TabIndex = 5;
@@ -98,7 +102,7 @@ namespace HotDogBrasilia.UI
             //
             // btnExcluir
             //
-            this.btnExcluir.Location = new System.Drawing.Point(220, 137);
+            this.btnExcluir.Location = new System.Drawing.Point(220, 209);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(90, 30);
             this.btnExcluir.TabIndex = 6;
@@ -115,7 +119,7 @@ namespace HotDogBrasilia.UI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvFornecedores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvFornecedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFornecedores.Location = new System.Drawing.Point(20, 182);
+            this.dgvFornecedores.Location = new System.Drawing.Point(20, 254);
             this.dgvFornecedores.MultiSelect = false;
             this.dgvFornecedores.Name = "dgvFornecedores";
             this.dgvFornecedores.ReadOnly = true;
@@ -127,10 +131,10 @@ namespace HotDogBrasilia.UI
             //
             // lblVazio
             //
-            this.lblVazio.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lblVazio.BackColor = System.Drawing.Color.White;
             this.lblVazio.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Italic);
-            this.lblVazio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.lblVazio.Location = new System.Drawing.Point(21, 210);
+            this.lblVazio.ForeColor = System.Drawing.Color.DimGray;
+            this.lblVazio.Location = new System.Drawing.Point(21, 282);
             this.lblVazio.Name = "lblVazio";
             this.lblVazio.Size = new System.Drawing.Size(518, 50);
             this.lblVazio.TabIndex = 9;
@@ -141,17 +145,49 @@ namespace HotDogBrasilia.UI
             // lblStatus
             //
             this.lblStatus.AutoSize = true;
-            this.lblStatus.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblStatus.Location = new System.Drawing.Point(20, 435);
+            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(110)))), ((int)(((byte)(46)))));
+            this.lblStatus.Location = new System.Drawing.Point(20, 507);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 19);
             this.lblStatus.TabIndex = 8;
+            //
+            // pnlTopo
+            //
+            this.pnlTopo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(48)))), ((int)(((byte)(43)))));
+            this.pnlTopo.Controls.Add(this.lblSubtitulo);
+            this.pnlTopo.Controls.Add(this.lblTitulo);
+            this.pnlTopo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTopo.Location = new System.Drawing.Point(0, 0);
+            this.pnlTopo.Name = "pnlTopo";
+            this.pnlTopo.Size = new System.Drawing.Size(560, 72);
+            this.pnlTopo.TabIndex = 50;
+            //
+            // lblTitulo
+            //
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(18, 10);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "Fornecedores";
+            //
+            // lblSubtitulo
+            //
+            this.lblSubtitulo.AutoSize = true;
+            this.lblSubtitulo.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(178)))));
+            this.lblSubtitulo.Location = new System.Drawing.Point(22, 44);
+            this.lblSubtitulo.Name = "lblSubtitulo";
+            this.lblSubtitulo.TabIndex = 1;
+            this.lblSubtitulo.Text = "Cadastro de fornecedores e quantos produtos cada um fornece";
             //
             // FrmFornecedores
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 470);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(246)))), ((int)(((byte)(244)))));
+            this.ClientSize = new System.Drawing.Size(560, 542);
             this.Controls.Add(this.lblVazio);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.dgvFornecedores);
@@ -162,6 +198,7 @@ namespace HotDogBrasilia.UI
             this.Controls.Add(this.lblNome);
             this.Controls.Add(this.txtBusca);
             this.Controls.Add(this.lblBusca);
+            this.Controls.Add(this.pnlTopo);
             this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -171,6 +208,8 @@ namespace HotDogBrasilia.UI
             this.Load += new System.EventHandler(this.FrmFornecedores_Load);
             this.Shown += new System.EventHandler(this.FrmFornecedores_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFornecedores)).EndInit();
+            this.pnlTopo.ResumeLayout(false);
+            this.pnlTopo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,6 +217,9 @@ namespace HotDogBrasilia.UI
 
         #endregion
 
+        private System.Windows.Forms.Panel pnlTopo;
+        private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Label lblSubtitulo;
         private System.Windows.Forms.Label lblBusca;
         private System.Windows.Forms.TextBox txtBusca;
         private System.Windows.Forms.Label lblNome;

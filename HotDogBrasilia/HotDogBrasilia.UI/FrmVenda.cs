@@ -19,6 +19,11 @@ namespace HotDogBrasilia.UI
         public FrmVenda()
         {
             InitializeComponent();
+            Tema.Grade(dgvItens);
+            Tema.BotaoPrimario(btnFinalizar);
+            Tema.BotaoSecundario(btnAdicionar);
+            Tema.BotaoNeutro(btnRemover);
+            Tema.BotaoNeutro(btnDescartar);
         }
 
         private void FrmVenda_Load(object sender, EventArgs e)

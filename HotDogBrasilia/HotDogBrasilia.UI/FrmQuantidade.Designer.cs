@@ -79,6 +79,7 @@ namespace HotDogBrasilia.UI
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(246)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(340, 150);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnOk);

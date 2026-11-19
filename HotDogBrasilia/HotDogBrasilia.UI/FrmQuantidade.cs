@@ -10,6 +10,8 @@ namespace HotDogBrasilia.UI
         public FrmQuantidade(string titulo, string pergunta, int minimo, int valorInicial)
         {
             InitializeComponent();
+            Tema.BotaoPrimario(btnOk);
+            Tema.BotaoNeutro(btnCancelar);
             Text = titulo;
             lblPergunta.Text = pergunta;
             nudValor.Minimum = minimo;

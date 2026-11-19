@@ -15,6 +15,10 @@ namespace HotDogBrasilia.UI
         public FrmVendas()
         {
             InitializeComponent();
+            Tema.Grade(dgvVendas);
+            Tema.Grade(dgvItens);
+            Tema.BotaoPrimario(btnBuscar);
+            Tema.BotaoNeutro(btnCancelarVenda);
             timerStatus.Tick += (s, e) =>
             {
                 lblStatus.Text = "";

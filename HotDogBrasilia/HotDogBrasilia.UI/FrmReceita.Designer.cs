@@ -116,9 +116,9 @@ namespace HotDogBrasilia.UI
             //
             // lblVazio
             //
-            this.lblVazio.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lblVazio.BackColor = System.Drawing.Color.White;
             this.lblVazio.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Italic);
-            this.lblVazio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.lblVazio.ForeColor = System.Drawing.Color.DimGray;
             this.lblVazio.Location = new System.Drawing.Point(21, 140);
             this.lblVazio.Name = "lblVazio";
             this.lblVazio.Size = new System.Drawing.Size(498, 50);
@@ -140,7 +140,7 @@ namespace HotDogBrasilia.UI
             // lblStatus
             //
             this.lblStatus.AutoEllipsis = true;
-            this.lblStatus.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(110)))), ((int)(((byte)(46)))));
             this.lblStatus.Location = new System.Drawing.Point(140, 328);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(270, 20);
@@ -161,6 +161,7 @@ namespace HotDogBrasilia.UI
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnFechar;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(246)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(540, 370);
             this.Controls.Add(this.lblVazio);
             this.Controls.Add(this.btnFechar);

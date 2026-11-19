@@ -17,6 +17,11 @@ namespace HotDogBrasilia.UI
         public FrmProdutos()
         {
             InitializeComponent();
+            Tema.Grade(dgvProdutos);
+            Tema.BotaoPrimario(btnSalvar);
+            Tema.BotaoSecundario(btnNovo);
+            Tema.BotaoSecundario(btnReceita);
+            Tema.BotaoNeutro(btnExcluir);
             timerStatus.Tick += (s, e) =>
             {
                 lblStatus.Text = "";

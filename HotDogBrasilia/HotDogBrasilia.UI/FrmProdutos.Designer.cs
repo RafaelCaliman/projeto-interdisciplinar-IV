@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.pnlTopo = new System.Windows.Forms.Panel();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.lblSubtitulo = new System.Windows.Forms.Label();
             this.lblBusca = new System.Windows.Forms.Label();
             this.txtBusca = new System.Windows.Forms.TextBox();
             this.lblNome = new System.Windows.Forms.Label();
@@ -46,12 +49,13 @@
             this.dgvProdutos = new System.Windows.Forms.DataGridView();
             this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).BeginInit();
+            this.pnlTopo.SuspendLayout();
             this.SuspendLayout();
             //
             // lblBusca
             //
             this.lblBusca.AutoSize = true;
-            this.lblBusca.Location = new System.Drawing.Point(20, 15);
+            this.lblBusca.Location = new System.Drawing.Point(20, 87);
             this.lblBusca.Name = "lblBusca";
             this.lblBusca.Size = new System.Drawing.Size(113, 19);
             this.lblBusca.TabIndex = 0;
@@ -59,7 +63,7 @@
             //
             // txtBusca
             //
-            this.txtBusca.Location = new System.Drawing.Point(20, 37);
+            this.txtBusca.Location = new System.Drawing.Point(20, 109);
             this.txtBusca.Name = "txtBusca";
             this.txtBusca.Size = new System.Drawing.Size(300, 23);
             this.txtBusca.TabIndex = 1;
@@ -68,7 +72,7 @@
             // lblNome
             //
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(20, 75);
+            this.lblNome.Location = new System.Drawing.Point(20, 147);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(48, 19);
             this.lblNome.TabIndex = 2;
@@ -76,7 +80,7 @@
             //
             // txtNome
             //
-            this.txtNome.Location = new System.Drawing.Point(20, 97);
+            this.txtNome.Location = new System.Drawing.Point(20, 169);
             this.txtNome.MaxLength = 100;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(280, 23);
@@ -85,7 +89,7 @@
             // lblValor
             //
             this.lblValor.AutoSize = true;
-            this.lblValor.Location = new System.Drawing.Point(320, 75);
+            this.lblValor.Location = new System.Drawing.Point(320, 147);
             this.lblValor.Name = "lblValor";
             this.lblValor.Size = new System.Drawing.Size(122, 19);
             this.lblValor.TabIndex = 4;
@@ -93,7 +97,7 @@
             //
             // txtValor
             //
-            this.txtValor.Location = new System.Drawing.Point(320, 97);
+            this.txtValor.Location = new System.Drawing.Point(320, 169);
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(110, 23);
             this.txtValor.TabIndex = 5;
@@ -101,7 +105,7 @@
             // lblEstoque
             //
             this.lblEstoque.AutoSize = true;
-            this.lblEstoque.Location = new System.Drawing.Point(445, 75);
+            this.lblEstoque.Location = new System.Drawing.Point(445, 147);
             this.lblEstoque.Name = "lblEstoque";
             this.lblEstoque.Size = new System.Drawing.Size(58, 19);
             this.lblEstoque.TabIndex = 6;
@@ -109,7 +113,7 @@
             //
             // txtEstoque
             //
-            this.txtEstoque.Location = new System.Drawing.Point(445, 97);
+            this.txtEstoque.Location = new System.Drawing.Point(445, 169);
             this.txtEstoque.Name = "txtEstoque";
             this.txtEstoque.Size = new System.Drawing.Size(90, 23);
             this.txtEstoque.TabIndex = 7;
@@ -117,7 +121,7 @@
             // lblFornecedor
             //
             this.lblFornecedor.AutoSize = true;
-            this.lblFornecedor.Location = new System.Drawing.Point(550, 75);
+            this.lblFornecedor.Location = new System.Drawing.Point(550, 147);
             this.lblFornecedor.Name = "lblFornecedor";
             this.lblFornecedor.Size = new System.Drawing.Size(80, 19);
             this.lblFornecedor.TabIndex = 8;
@@ -127,14 +131,14 @@
             //
             this.cboFornecedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFornecedor.FormattingEnabled = true;
-            this.cboFornecedor.Location = new System.Drawing.Point(550, 97);
+            this.cboFornecedor.Location = new System.Drawing.Point(550, 169);
             this.cboFornecedor.Name = "cboFornecedor";
             this.cboFornecedor.Size = new System.Drawing.Size(190, 23);
             this.cboFornecedor.TabIndex = 9;
             //
             // btnNovo
             //
-            this.btnNovo.Location = new System.Drawing.Point(20, 137);
+            this.btnNovo.Location = new System.Drawing.Point(20, 209);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(90, 30);
             this.btnNovo.TabIndex = 10;
@@ -144,7 +148,7 @@
             //
             // btnSalvar
             //
-            this.btnSalvar.Location = new System.Drawing.Point(120, 137);
+            this.btnSalvar.Location = new System.Drawing.Point(120, 209);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(90, 30);
             this.btnSalvar.TabIndex = 11;
@@ -154,7 +158,7 @@
             //
             // btnExcluir
             //
-            this.btnExcluir.Location = new System.Drawing.Point(220, 137);
+            this.btnExcluir.Location = new System.Drawing.Point(220, 209);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(90, 30);
             this.btnExcluir.TabIndex = 12;
@@ -164,7 +168,7 @@
             //
             // btnReceita
             //
-            this.btnReceita.Location = new System.Drawing.Point(320, 137);
+            this.btnReceita.Location = new System.Drawing.Point(320, 209);
             this.btnReceita.Name = "btnReceita";
             this.btnReceita.Size = new System.Drawing.Size(110, 30);
             this.btnReceita.TabIndex = 15;
@@ -177,7 +181,7 @@
             this.lblDicaEstoque.AutoSize = true;
             this.lblDicaEstoque.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
             this.lblDicaEstoque.ForeColor = System.Drawing.Color.DimGray;
-            this.lblDicaEstoque.Location = new System.Drawing.Point(445, 144);
+            this.lblDicaEstoque.Location = new System.Drawing.Point(445, 216);
             this.lblDicaEstoque.Name = "lblDicaEstoque";
             this.lblDicaEstoque.Size = new System.Drawing.Size(250, 15);
             this.lblDicaEstoque.TabIndex = 16;
@@ -193,7 +197,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProdutos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProdutos.Location = new System.Drawing.Point(20, 182);
+            this.dgvProdutos.Location = new System.Drawing.Point(20, 254);
             this.dgvProdutos.MultiSelect = false;
             this.dgvProdutos.Name = "dgvProdutos";
             this.dgvProdutos.ReadOnly = true;
@@ -206,17 +210,49 @@
             // lblStatus
             //
             this.lblStatus.AutoSize = true;
-            this.lblStatus.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblStatus.Location = new System.Drawing.Point(20, 435);
+            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(110)))), ((int)(((byte)(46)))));
+            this.lblStatus.Location = new System.Drawing.Point(20, 507);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 19);
             this.lblStatus.TabIndex = 14;
+            //
+            // pnlTopo
+            //
+            this.pnlTopo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(48)))), ((int)(((byte)(43)))));
+            this.pnlTopo.Controls.Add(this.lblSubtitulo);
+            this.pnlTopo.Controls.Add(this.lblTitulo);
+            this.pnlTopo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTopo.Location = new System.Drawing.Point(0, 0);
+            this.pnlTopo.Name = "pnlTopo";
+            this.pnlTopo.Size = new System.Drawing.Size(760, 72);
+            this.pnlTopo.TabIndex = 50;
+            //
+            // lblTitulo
+            //
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(18, 10);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "Produtos";
+            //
+            // lblSubtitulo
+            //
+            this.lblSubtitulo.AutoSize = true;
+            this.lblSubtitulo.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(178)))));
+            this.lblSubtitulo.Location = new System.Drawing.Point(22, 44);
+            this.lblSubtitulo.Name = "lblSubtitulo";
+            this.lblSubtitulo.TabIndex = 1;
+            this.lblSubtitulo.Text = "Cadastro de produtos com preço, estoque, fornecedor e receita";
             //
             // FrmProdutos
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(760, 470);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(246)))), ((int)(((byte)(244)))));
+            this.ClientSize = new System.Drawing.Size(760, 542);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.dgvProdutos);
             this.Controls.Add(this.lblDicaEstoque);
@@ -234,6 +270,7 @@
             this.Controls.Add(this.lblNome);
             this.Controls.Add(this.txtBusca);
             this.Controls.Add(this.lblBusca);
+            this.Controls.Add(this.pnlTopo);
             this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -242,6 +279,8 @@
             this.Text = "Hot-dog Brasília - Produtos";
             this.Load += new System.EventHandler(this.FrmProdutos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).EndInit();
+            this.pnlTopo.ResumeLayout(false);
+            this.pnlTopo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,6 +288,9 @@
 
         #endregion
 
+        private System.Windows.Forms.Panel pnlTopo;
+        private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Label lblSubtitulo;
         private System.Windows.Forms.Label lblBusca;
         private System.Windows.Forms.TextBox txtBusca;
         private System.Windows.Forms.Label lblNome;

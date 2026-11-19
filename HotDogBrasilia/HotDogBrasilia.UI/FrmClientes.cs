@@ -13,6 +13,10 @@ namespace HotDogBrasilia.UI
         public FrmClientes()
         {
             InitializeComponent();
+            Tema.Grade(dgvClientes);
+            Tema.BotaoPrimario(btnSalvar);
+            Tema.BotaoSecundario(btnNovo);
+            Tema.BotaoNeutro(btnExcluir);
             timerStatus.Tick += (s, e) =>
             {
                 lblStatus.Text = "";

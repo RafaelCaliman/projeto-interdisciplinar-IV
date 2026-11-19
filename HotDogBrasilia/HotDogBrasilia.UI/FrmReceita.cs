@@ -17,6 +17,10 @@ namespace HotDogBrasilia.UI
         public FrmReceita(int idProduto, string nomeProduto)
         {
             InitializeComponent();
+            Tema.Grade(dgvReceita);
+            Tema.BotaoPrimario(btnDefinir);
+            Tema.BotaoNeutro(btnRemover);
+            Tema.BotaoNeutro(btnFechar);
             this.idProduto = idProduto;
             this.nomeProduto = nomeProduto;
             Text = "Receita - " + nomeProduto;

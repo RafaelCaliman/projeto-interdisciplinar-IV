@@ -48,6 +48,45 @@ namespace HotDogBrasilia.UI
             g.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(252, 251, 250);
         }
 
+        public static void BotaoPrimario(Button b)
+        {
+            Botao(b, Vermelho, Color.White, Vermelho,
+                Color.FromArgb(165, 38, 34), VermelhoEscuro, true);
+        }
+
+        public static void BotaoSecundario(Button b)
+        {
+            Botao(b, Color.White, Vermelho, Vermelho,
+                Color.FromArgb(255, 240, 238), Color.FromArgb(255, 224, 220), false);
+        }
+
+        public static void BotaoNeutro(Button b)
+        {
+            Botao(b, Color.White, TextoEscuro, Color.FromArgb(200, 200, 200),
+                Color.FromArgb(245, 245, 245), Color.FromArgb(230, 230, 230), false);
+        }
+
+        private static void Botao(Button b, Color fundo, Color texto, Color borda,
+            Color sobre, Color pressionado, bool negrito)
+        {
+            b.FlatStyle = FlatStyle.Flat;
+            b.UseVisualStyleBackColor = false;
+            b.ForeColor = texto;
+            b.FlatAppearance.BorderSize = 1;
+            b.FlatAppearance.MouseOverBackColor = sobre;
+            b.FlatAppearance.MouseDownBackColor = pressionado;
+            if (negrito) b.Font = new Font(b.Font, FontStyle.Bold);
+
+            System.EventHandler aplicar = (s, e) =>
+            {
+                b.BackColor = b.Enabled ? fundo : Color.FromArgb(235, 235, 235);
+                b.FlatAppearance.BorderColor = b.Enabled ? borda : Borda;
+                b.Cursor = b.Enabled ? Cursors.Hand : Cursors.Default;
+            };
+            b.EnabledChanged += aplicar;
+            aplicar(b, System.EventArgs.Empty);
+        }
+
         // Coluna de moeda: formato R$ e alinhada à direita.
         public static void ColunaMoeda(DataGridViewColumn c)
         {
