@@ -62,3 +62,11 @@ O projeto de inicialização já vem configurado como `HotDogBrasilia.UI`. É s�
 - `HotDogBrasilia.UI` — telas (Windows Forms)
 - `HotDogBrasilia.Domain` — entidades do sistema (Cliente, etc.)
 - `HotDogBrasilia.Data` — conexão com o banco e repositórios
+
+### Telas e menu
+O menu mostra só o que o perfil do usuário logado pode acessar.
+- **Cadastros**: Clientes, Produtos e Fornecedores
+- **Vendas**: Nova venda e Consultar vendas
+- **Financeiro**: Lançamentos
+- **Relatórios**: Vendas por período, Estoque e Financeiro
+- **Sistema**: Log de ações (consulta de quem fez o quê, por período e por usuário), Trocar usuário e Sair
