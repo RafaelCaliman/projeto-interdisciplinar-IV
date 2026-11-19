@@ -49,6 +49,7 @@
     <Compile Include="LinhaRelatorioVenda.cs" />
     <Compile Include="Permissoes.cs" />
     <Compile Include="Produto.cs" />
+    <Compile Include="RegistroLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResumoFinanceiro.cs" />
     <Compile Include="ResumoVendas.cs" />

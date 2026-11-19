@@ -42,5 +42,31 @@ namespace HotDogBrasilia.Data.Repositories
 
             return null;
         }
+
+        public static List<Usuario> listarUsuarios()
+        {
+            var lista = new List<Usuario>();
+            using (var conn = ConexaoBanco.ObterConexao())
+            using (var cmd = new MySqlCommand("sp_usuario_listar", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                conn.Open();
+                using (var rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        lista.Add(new Usuario
+                        {
+                            IdUser = rd.GetInt32("id_usuario"),
+                            Nome = rd.GetString("nome"),
+                            Login = rd.GetString("login"),
+                            Perfil = rd.GetString("perfil"),
+                            Ativo = Convert.ToBoolean(rd["ativo"])
+                        });
+                    }
+                }
+            }
+            return lista;
+        }
     }
 }
