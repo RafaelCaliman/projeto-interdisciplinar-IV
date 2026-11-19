@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,6 +18,12 @@ namespace HotDogBrasilia.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            var ptBr = new CultureInfo("pt-BR");
+            CultureInfo.DefaultThreadCurrentCulture = ptBr;
+            CultureInfo.DefaultThreadCurrentUICulture = ptBr;
+            Thread.CurrentThread.CurrentCulture = ptBr;
+            Thread.CurrentThread.CurrentUICulture = ptBr;
 
             // Rede de segurança: qualquer erro não tratado nas telas vira uma
             // mensagem, em vez de fechar o programa.

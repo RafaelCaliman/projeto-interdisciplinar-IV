@@ -303,7 +303,7 @@ namespace HotDogBrasilia.UI
             this.lblNota.Name = "lblNota";
             this.lblNota.Size = new System.Drawing.Size(300, 15);
             this.lblNota.TabIndex = 3;
-            this.lblNota.Text = "Total calculado com o valor atual dos produtos (RN16).";
+            this.lblNota.Text = "Total calculado com o valor do produto no momento da venda (RN16).";
             //
             // lblStatus
             //
@@ -385,7 +385,7 @@ namespace HotDogBrasilia.UI
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.KeyPreview = true;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(780, 520);
+            this.MinimumSize = new System.Drawing.Size(840, 520);
             this.Name = "FrmRelatorioVendas";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

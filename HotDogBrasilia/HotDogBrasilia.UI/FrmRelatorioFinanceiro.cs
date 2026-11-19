@@ -62,6 +62,7 @@ namespace HotDogBrasilia.UI
         {
             if (dtpInicio.Checked && dtpFim.Checked && dtpInicio.Value.Date > dtpFim.Value.Date)
             {
+                Zerar();
                 MessageBox.Show("A data inicial não pode ser maior que a data final.", "Atenção",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dtpInicio.Focus();
@@ -120,6 +121,17 @@ namespace HotDogBrasilia.UI
                 card.CorValor = valor < 0 ? Tema.Erro : Tema.Sucesso;
         }
 
+        private void Zerar()
+        {
+            foreach (var card in new[] { cardRecebido, cardAReceber, cardPago, cardAPagar,
+                                         cardSaldoRealizado, cardSaldoPrevisto })
+                Mostrar(card, 0m, false);
+            cardSaldoRealizado.CorValor = Tema.TextoEscuro;
+            cardSaldoPrevisto.CorValor = Tema.TextoEscuro;
+            tabela.Rows.Clear();
+            lblStatus.Text = "";
+        }
+
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             dtpInicio.Value = DateTime.Today;
@@ -132,6 +144,7 @@ namespace HotDogBrasilia.UI
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
+            if (!TemDados()) return;
             string caminho = AcoesRelatorio.ExportarCsv(this, tabela, "relatorio_financeiro",
                 "Financeiro", filtrosGerados);
             if (caminho != null)
@@ -140,8 +153,17 @@ namespace HotDogBrasilia.UI
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
+            if (!TemDados()) return;
             AcoesRelatorio.Imprimir(this, tabela, "Hot-dog Brasília — Relatório Financeiro",
                 "Financeiro", filtrosGerados);
+        }
+
+        private bool TemDados()
+        {
+            if (tabela.Rows.Count > 0) return true;
+            MessageBox.Show("Não há dados para exportar ou imprimir.\nGere o relatório com outro período.",
+                "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return false;
         }
 
         private void MostrarStatus(string msg, bool aviso)

@@ -84,6 +84,7 @@ namespace HotDogBrasilia.UI
         {
             if (dtpInicio.Checked && dtpFim.Checked && dtpInicio.Value.Date > dtpFim.Value.Date)
             {
+                Zerar();
                 MessageBox.Show("A data inicial não pode ser maior que a data final.", "Atenção",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dtpInicio.Focus();
@@ -128,6 +129,16 @@ namespace HotDogBrasilia.UI
                 UseWaitCursor = false;
                 btnGerar.Enabled = true;
             }
+        }
+
+        private void Zerar()
+        {
+            tabela.Rows.Clear();
+            cardQtd.Valor = 0.ToString(PtBr);
+            cardTotal.Valor = 0m.ToString("C2", PtBr);
+            cardTicket.Valor = 0m.ToString("C2", PtBr);
+            AtualizarVazio();
+            lblStatus.Text = "";
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
