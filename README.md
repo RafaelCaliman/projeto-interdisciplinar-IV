@@ -43,11 +43,13 @@ Projeto acadêmico, de uso restrito ao contexto do Projeto Interdisciplinar IV n
 git clone https://github.com/RafaelCaliman/projeto-interdisciplinar-IV.git
 
 ### 2. Criar o banco de dados
-Rodar o script `DataBase/hotdog_brasilia_v5_banco_final.sql` no seu MySQL local (por exemplo, no MySQL Workbench). Esse é o script atual (v5): ele cria o banco `hotdog_brasilia` do zero, já com dados de teste (4 clientes, incluindo o "Cliente balcão", 4 produtos, 3 vendas e 5 lançamentos financeiros) e com os usuários `admin`, `operador` e `gerencia` (as senhas iniciais estão no próprio script; troque-as antes da apresentação).
+Rodar o script `DataBase/hotdog_brasilia_v6_banco_final.sql` no seu MySQL local (por exemplo, no MySQL Workbench). Esse é o script atual (v6): ele cria o banco `hotdog_brasilia` do zero, já com dados de teste (4 clientes, incluindo o "Cliente balcão", 4 produtos, 3 insumos com as receitas dos hot-dogs, 3 vendas e 5 lançamentos financeiros) e com os usuários `admin`, `operador` e `gerencia` (as senhas iniciais estão no próprio script; troque-as antes da apresentação).
 
-O script `DataBase/hotdog_brasilia_v5_testes.sql` é opcional: roda os testes do banco depois do script principal.
+No v6 o estoque dos hot-dogs é controlado por insumo: cada produto pode ter uma receita (pão, salsicha, molho), a venda baixa os insumos e o estoque mostrado do produto é calculado pelo que sobrou deles. Produtos sem receita (refrigerante, suco) continuam com estoque próprio.
 
-Versões anteriores do script (v2, v3 e v4) são apenas histórico do projeto e não devem ser usadas para criar o banco.
+Os scripts `DataBase/hotdog_brasilia_v6_conferencia_rapida.sql` (contagens) e `DataBase/hotdog_brasilia_v6_testes.sql` (testes do banco) são opcionais e rodam depois do script principal.
+
+Versões anteriores do script (v2 a v5) são apenas histórico do projeto e não devem ser usadas para criar o banco.
 
 ### 3. Abrir o projeto
 Dentro da pasta clonada, entrar em `HotDogBrasilia/` e abrir o arquivo `HotDogBrasilia.sln`.
@@ -65,8 +67,8 @@ O projeto de inicialização já vem configurado como `HotDogBrasilia.UI`. É s�
 
 ### Telas e menu
 O menu mostra só o que o perfil do usuário logado pode acessar.
-- **Cadastros**: Clientes, Produtos e Fornecedores
+- **Cadastros**: Clientes, Produtos (com a receita de cada produto), Insumos e Fornecedores
 - **Vendas**: Nova venda e Consultar vendas
 - **Financeiro**: Lançamentos
-- **Relatórios**: Vendas por período, Estoque e Financeiro
+- **Relatórios**: Vendas por período, Estoque, Insumos e Financeiro
 - **Sistema**: Log de ações (consulta de quem fez o quê, por período e por usuário), Trocar usuário e Sair
