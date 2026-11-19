@@ -32,6 +32,7 @@
             this.mnuCadastros = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProdutos = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuInsumos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFornecedores = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVendas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNovaVenda = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +45,7 @@
             this.mnuRelatorios = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRelVendas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRelEstoque = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRelInsumos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRelFinanceiro = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuFinanceiro = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLancamentos = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,6 +74,7 @@
             this.mnuCadastros.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuClientes,
             this.mnuProdutos,
+            this.mnuInsumos,
             this.mnuFornecedores});
             this.mnuCadastros.Name = "mnuCadastros";
             this.mnuCadastros.Size = new System.Drawing.Size(71, 20);
@@ -90,6 +93,13 @@
             this.mnuProdutos.Size = new System.Drawing.Size(122, 22);
             this.mnuProdutos.Text = "Produtos";
             this.mnuProdutos.Click += new System.EventHandler(this.mnuProdutos_Click);
+            // 
+            // mnuInsumos
+            // 
+            this.mnuInsumos.Name = "mnuInsumos";
+            this.mnuInsumos.Size = new System.Drawing.Size(122, 22);
+            this.mnuInsumos.Text = "Insumos";
+            this.mnuInsumos.Click += new System.EventHandler(this.mnuInsumos_Click);
             // 
             // mnuFornecedores
             // 
@@ -163,6 +173,7 @@
             this.mnuRelatorios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuRelVendas,
             this.mnuRelEstoque,
+            this.mnuRelInsumos,
             this.mnuRelFinanceiro});
             this.mnuRelatorios.Name = "mnuRelatorios";
             this.mnuRelatorios.Size = new System.Drawing.Size(73, 20);
@@ -181,6 +192,13 @@
             this.mnuRelEstoque.Size = new System.Drawing.Size(200, 22);
             this.mnuRelEstoque.Text = "Estoque";
             this.mnuRelEstoque.Click += new System.EventHandler(this.mnuRelEstoque_Click);
+            // 
+            // mnuRelInsumos
+            // 
+            this.mnuRelInsumos.Name = "mnuRelInsumos";
+            this.mnuRelInsumos.Size = new System.Drawing.Size(200, 22);
+            this.mnuRelInsumos.Text = "Insumos";
+            this.mnuRelInsumos.Click += new System.EventHandler(this.mnuRelInsumos_Click);
             // 
             // mnuRelFinanceiro
             // 
@@ -254,6 +272,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuCadastros;
         private System.Windows.Forms.ToolStripMenuItem mnuClientes;
         private System.Windows.Forms.ToolStripMenuItem mnuProdutos;
+        private System.Windows.Forms.ToolStripMenuItem mnuInsumos;
         private System.Windows.Forms.ToolStripMenuItem mnuFornecedores;
         private System.Windows.Forms.ToolStripMenuItem mnuVendas;
         private System.Windows.Forms.ToolStripMenuItem mnuNovaVenda;
@@ -266,6 +285,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuRelatorios;
         private System.Windows.Forms.ToolStripMenuItem mnuRelVendas;
         private System.Windows.Forms.ToolStripMenuItem mnuRelEstoque;
+        private System.Windows.Forms.ToolStripMenuItem mnuRelInsumos;
         private System.Windows.Forms.ToolStripMenuItem mnuRelFinanceiro;
         private System.Windows.Forms.ToolStripMenuItem mnuFinanceiro;
         private System.Windows.Forms.ToolStripMenuItem mnuLancamentos;

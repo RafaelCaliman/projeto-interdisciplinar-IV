@@ -81,7 +81,7 @@ namespace HotDogBrasilia.UI
             this.lblSubtitulo.Name = "lblSubtitulo";
             this.lblSubtitulo.Size = new System.Drawing.Size(330, 17);
             this.lblSubtitulo.TabIndex = 1;
-            this.lblSubtitulo.Text = "Quantidade disponível por produto, com situação do estoque";
+            this.lblSubtitulo.Text = "Quantidade disponível por produto (hot-dogs calculados pelos insumos da receita), com situação";
             //
             // lblTitulo
             //

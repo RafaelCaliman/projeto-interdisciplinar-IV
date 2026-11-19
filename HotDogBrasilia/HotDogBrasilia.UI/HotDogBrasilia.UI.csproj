@@ -137,6 +137,12 @@
     <Compile Include="FrmVendas.Designer.cs">
       <DependentUpon>FrmVendas.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmInsumos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmInsumos.Designer.cs">
+      <DependentUpon>FrmInsumos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLancamentos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,18 @@
     <Compile Include="FrmLogAcoes.Designer.cs">
       <DependentUpon>FrmLogAcoes.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmQuantidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmQuantidade.Designer.cs">
+      <DependentUpon>FrmQuantidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReceita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReceita.Designer.cs">
+      <DependentUpon>FrmReceita.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRelatorioVendas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +184,12 @@
     </Compile>
     <Compile Include="FrmRelatorioEstoque.Designer.cs">
       <DependentUpon>FrmRelatorioEstoque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRelatorioInsumos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRelatorioInsumos.Designer.cs">
+      <DependentUpon>FrmRelatorioInsumos.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmRelatorioFinanceiro.cs">
       <SubType>Form</SubType>

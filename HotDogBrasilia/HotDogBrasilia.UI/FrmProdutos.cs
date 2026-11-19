@@ -9,6 +9,8 @@ namespace HotDogBrasilia.UI
     public partial class FrmProdutos : Form
     {
         private int idSelecionado = 0;
+        private string nomeSelecionado = "";
+        private bool podeGravar;
         private static readonly CultureInfo PtBr = new CultureInfo("pt-BR");
         private readonly Timer timerStatus = new Timer { Interval = 4000 };
 
@@ -43,10 +45,11 @@ namespace HotDogBrasilia.UI
         // Desliga os botões que o usuário logado não pode usar.
         private void AplicarPermissoes()
         {
-            bool podeGravar = Sessao.TemPermissao(Permissoes.ProdutoGravar);
+            podeGravar = Sessao.TemPermissao(Permissoes.ProdutoGravar);
             btnNovo.Enabled = podeGravar;
             btnSalvar.Enabled = podeGravar;
             btnExcluir.Enabled = Sessao.TemPermissao(Permissoes.ProdutoExcluir);
+            btnReceita.Enabled = podeGravar;
         }
 
         private void CarregarGrade()
@@ -56,6 +59,8 @@ namespace HotDogBrasilia.UI
                 dgvProdutos.Columns["IdProduto"].Visible = false;
             if (dgvProdutos.Columns.Contains("IdFornecedor"))
                 dgvProdutos.Columns["IdFornecedor"].Visible = false;
+            if (dgvProdutos.Columns.Contains("PorReceita"))
+                dgvProdutos.Columns["PorReceita"].Visible = false;
             if (dgvProdutos.Columns.Contains("NomeFornecedor"))
                 dgvProdutos.Columns["NomeFornecedor"].HeaderText = "Fornecedor";
             if (dgvProdutos.Columns.Contains("Valor"))
@@ -73,9 +78,11 @@ namespace HotDogBrasilia.UI
         private void Limpar()
         {
             idSelecionado = 0;
+            nomeSelecionado = "";
             txtNome.Clear();
             txtValor.Clear();
             txtEstoque.Clear();
+            MarcarEstoquePorReceita(false);
             cboFornecedor.SelectedIndex = -1;
             txtNome.Focus();
         }
@@ -116,11 +123,62 @@ namespace HotDogBrasilia.UI
             if (e.RowIndex < 0) return;
             var p = dgvProdutos.Rows[e.RowIndex].DataBoundItem as Produto;
             if (p == null) return;
+            Preencher(p);
+        }
+
+        private void Preencher(Produto p)
+        {
             idSelecionado = p.IdProduto;
+            nomeSelecionado = p.Nome;
             txtNome.Text = p.Nome;
             txtValor.Text = p.Valor.ToString("N2", PtBr);
             txtEstoque.Text = p.Estoque.ToString();
             cboFornecedor.SelectedValue = p.IdFornecedor;
+            MarcarEstoquePorReceita(p.PorReceita);
+        }
+
+        private void MarcarEstoquePorReceita(bool porReceita)
+        {
+            txtEstoque.Enabled = !porReceita;
+            lblDicaEstoque.Visible = porReceita;
+        }
+
+        private void btnReceita_Click(object sender, EventArgs e)
+        {
+            if (!ControleAcesso.Verificar(Permissoes.ProdutoGravar)) return;
+
+            if (idSelecionado == 0)
+            {
+                MessageBox.Show("Selecione um produto na lista.", "Atenção",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int id = idSelecionado;
+            bool alterou;
+            using (var f = new FrmReceita(id, nomeSelecionado))
+            {
+                f.ShowDialog(this);
+                alterou = f.Alterou;
+            }
+            if (!alterou) return;
+
+            try
+            {
+                CarregarGrade();
+                foreach (DataGridViewRow r in dgvProdutos.Rows)
+                {
+                    var p = r.DataBoundItem as Produto;
+                    if (p == null || p.IdProduto != id) continue;
+                    r.Selected = true;
+                    Preencher(p);
+                    break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Erros.Mostrar(ex);
+            }
         }
 
         private void btnNovo_Click(object sender, EventArgs e)

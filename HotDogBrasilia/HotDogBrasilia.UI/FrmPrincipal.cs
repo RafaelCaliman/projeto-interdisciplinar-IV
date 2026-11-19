@@ -65,6 +65,7 @@ namespace HotDogBrasilia.UI
 
             mnuClientes.Visible = podeClientes;
             mnuProdutos.Visible = podeProdutos;
+            mnuInsumos.Visible = podeProdutos;
             mnuFornecedores.Visible = podeFornecedores;
 
             // Se nenhum item de Cadastros sobrou, esconde o menu inteiro.
@@ -96,6 +97,12 @@ namespace HotDogBrasilia.UI
         private void mnuProdutos_Click(object sender, EventArgs e)
         {
             using (var f = new FrmProdutos()) { f.ShowDialog(this); }
+        }
+
+        private void mnuInsumos_Click(object sender, EventArgs e)
+        {
+            if (!ControleAcesso.Verificar(Permissoes.ProdutoVer)) return;
+            using (var f = new FrmInsumos()) { f.ShowDialog(this); }
         }
 
         private void mnuFornecedores_Click(object sender, EventArgs e)
@@ -133,6 +140,11 @@ namespace HotDogBrasilia.UI
         private void mnuRelEstoque_Click(object sender, EventArgs e)
         {
             using (var f = new FrmRelatorioEstoque()) { f.ShowDialog(this); }
+        }
+
+        private void mnuRelInsumos_Click(object sender, EventArgs e)
+        {
+            using (var f = new FrmRelatorioInsumos()) { f.ShowDialog(this); }
         }
 
         private void mnuRelFinanceiro_Click(object sender, EventArgs e)

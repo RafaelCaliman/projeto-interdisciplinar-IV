@@ -41,6 +41,8 @@
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnReceita = new System.Windows.Forms.Button();
+            this.lblDicaEstoque = new System.Windows.Forms.Label();
             this.dgvProdutos = new System.Windows.Forms.DataGridView();
             this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).BeginInit();
@@ -160,6 +162,28 @@
             this.btnExcluir.UseVisualStyleBackColor = true;
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             //
+            // btnReceita
+            //
+            this.btnReceita.Location = new System.Drawing.Point(320, 137);
+            this.btnReceita.Name = "btnReceita";
+            this.btnReceita.Size = new System.Drawing.Size(110, 30);
+            this.btnReceita.TabIndex = 15;
+            this.btnReceita.Text = "Receita...";
+            this.btnReceita.UseVisualStyleBackColor = true;
+            this.btnReceita.Click += new System.EventHandler(this.btnReceita_Click);
+            //
+            // lblDicaEstoque
+            //
+            this.lblDicaEstoque.AutoSize = true;
+            this.lblDicaEstoque.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
+            this.lblDicaEstoque.ForeColor = System.Drawing.Color.DimGray;
+            this.lblDicaEstoque.Location = new System.Drawing.Point(445, 144);
+            this.lblDicaEstoque.Name = "lblDicaEstoque";
+            this.lblDicaEstoque.Size = new System.Drawing.Size(250, 15);
+            this.lblDicaEstoque.TabIndex = 16;
+            this.lblDicaEstoque.Text = "Estoque calculado pelos insumos da receita.";
+            this.lblDicaEstoque.Visible = false;
+            //
             // dgvProdutos
             //
             this.dgvProdutos.AllowUserToAddRows = false;
@@ -195,6 +219,8 @@
             this.ClientSize = new System.Drawing.Size(760, 470);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.dgvProdutos);
+            this.Controls.Add(this.lblDicaEstoque);
+            this.Controls.Add(this.btnReceita);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.btnNovo);
@@ -236,6 +262,8 @@
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Button btnReceita;
+        private System.Windows.Forms.Label lblDicaEstoque;
         private System.Windows.Forms.DataGridView dgvProdutos;
         private System.Windows.Forms.Label lblStatus;
     }
