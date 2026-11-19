@@ -8,5 +8,6 @@
         public int Estoque { get; set; }
         public int IdFornecedor { get; set; }
         public string NomeFornecedor { get; set; }
+        public bool PorReceita { get; set; }
     }
 }

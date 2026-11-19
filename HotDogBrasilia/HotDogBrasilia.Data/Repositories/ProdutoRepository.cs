@@ -27,9 +27,10 @@ namespace HotDogBrasilia.Data.Repositories
                             IdProduto = rd.GetInt32("id_produto"),
                             Nome = rd.GetString("nome"),
                             Valor = rd.GetDecimal("valor"),
-                            Estoque = rd.GetInt32("estoque"),
+                            Estoque = Convert.ToInt32(rd["estoque"]),
                             IdFornecedor = rd.GetInt32("id_fornecedor"),
-                            NomeFornecedor = rd.GetString("fornecedor")
+                            NomeFornecedor = rd.GetString("fornecedor"),
+                            PorReceita = Convert.ToInt32(rd["por_receita"]) == 1
                         });
                     }
                 }

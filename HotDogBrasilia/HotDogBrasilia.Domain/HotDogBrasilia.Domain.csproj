@@ -43,9 +43,12 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="Fornecedor.cs" />
+    <Compile Include="Insumo.cs" />
+    <Compile Include="ItemReceita.cs" />
     <Compile Include="ItemVenda.cs" />
     <Compile Include="LancamentoFinanceiro.cs" />
     <Compile Include="LinhaRelatorioEstoque.cs" />
+    <Compile Include="LinhaRelatorioInsumo.cs" />
     <Compile Include="LinhaRelatorioVenda.cs" />
     <Compile Include="Permissoes.cs" />
     <Compile Include="Produto.cs" />

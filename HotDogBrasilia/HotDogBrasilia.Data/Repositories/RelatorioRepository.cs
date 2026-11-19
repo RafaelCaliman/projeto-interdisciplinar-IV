@@ -80,8 +80,33 @@ namespace HotDogBrasilia.Data.Repositories
                         lista.Add(new LinhaRelatorioEstoque
                         {
                             Produto = rd.GetString("produto"),
-                            Estoque = rd.GetInt32("estoque"),
+                            Estoque = Convert.ToInt32(rd["estoque"]),
                             Fornecedor = rd.GetString("fornecedor"),
+                            Situacao = rd.GetString("situacao")
+                        });
+                    }
+                }
+            }
+            return lista;
+        }
+        public static List<LinhaRelatorioInsumo> listarInsumos(int? limite)
+        {
+            var lista = new List<LinhaRelatorioInsumo>();
+            using (var conn = ConexaoBanco.ObterConexao())
+            using (var cmd = new MySqlCommand("sp_relatorio_insumos", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("p_limite_baixo",
+                    limite.HasValue ? (object)limite.Value : DBNull.Value);
+                conn.Open();
+                using (var rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        lista.Add(new LinhaRelatorioInsumo
+                        {
+                            Insumo = rd.GetString("insumo"),
+                            Estoque = Convert.ToInt32(rd["estoque"]),
                             Situacao = rd.GetString("situacao")
                         });
                     }
