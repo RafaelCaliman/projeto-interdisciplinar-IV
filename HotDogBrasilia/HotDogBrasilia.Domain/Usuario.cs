@@ -12,6 +12,7 @@ namespace HotDogBrasilia.Domain
         public string Nome { get; set; }
         public string Login { get; set; }
         public int IdPerfil { get; set; }
+        public string Perfil { get; set; }
         public bool Ativo { get; set; }
         public DateTime? UltimoAcesso { get; set;}
 

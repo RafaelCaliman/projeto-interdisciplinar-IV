@@ -33,7 +33,8 @@ namespace HotDogBrasilia.Data.Repositories
                             IdUser = reader.GetInt32("id_usuario"),
                             Nome = reader.GetString("nome"),
                             Login = reader.GetString("login"),
-                            IdPerfil = reader.GetInt32("id_perfil")
+                            IdPerfil = reader.GetInt32("id_perfil"),
+                            Perfil = reader.GetString("perfil")
                         };
                     }
                 }

@@ -25,7 +25,14 @@ namespace HotDogBrasilia.UI
         private void Form1_Load(object sender, EventArgs e)
         {
             Text = "Hot-dog Brasília — " + Sessao.Usuario.Nome;
+            MostrarUsuarioNaBarra();
             AplicarPermissoes();
+        }
+
+        private void MostrarUsuarioNaBarra()
+        {
+            var u = Sessao.Usuario;
+            lblUsuarioBarra.Text = "Usuário: " + u.Nome + " (" + u.Login + ") · Perfil: " + u.Perfil;
         }
 
         private void mnuTrocarUsuario_Click(object sender, EventArgs e)
@@ -68,6 +75,10 @@ namespace HotDogBrasilia.UI
             mnuConsultarVendas.Visible = podeConsultarVendas;
             mnuVendas.Visible = podeNovaVenda || podeConsultarVendas;
 
+            bool podeFinanceiro = Sessao.TemPermissao(Permissoes.FinanceiroVer);
+            mnuLancamentos.Visible = podeFinanceiro;
+            mnuFinanceiro.Visible = podeFinanceiro;
+
             mnuRelatorios.Visible = Sessao.TemPermissao(Permissoes.RelatorioVer);
         }
 
@@ -89,6 +100,11 @@ namespace HotDogBrasilia.UI
         private void mnuConsultarVendas_Click(object sender, EventArgs e)
         {
             using (var f = new FrmVendas()) { f.ShowDialog(this); }
+        }
+
+        private void mnuLancamentos_Click(object sender, EventArgs e)
+        {
+            using (var f = new FrmLancamentos()) { f.ShowDialog(this); }
         }
 
         private void mnuRelVendas_Click(object sender, EventArgs e)

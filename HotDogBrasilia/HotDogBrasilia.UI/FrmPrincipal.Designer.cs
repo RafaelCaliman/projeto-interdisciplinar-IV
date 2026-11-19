@@ -42,7 +42,12 @@
             this.mnuRelVendas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRelEstoque = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRelFinanceiro = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFinanceiro = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLancamentos = new System.Windows.Forms.ToolStripMenuItem();
+            this.stsPrincipal = new System.Windows.Forms.StatusStrip();
+            this.lblUsuarioBarra = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
+            this.stsPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -50,6 +55,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuCadastros,
             this.mnuVendas,
+            this.mnuFinanceiro,
             this.mnuRelatorios,
             this.mnuSistema});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -157,12 +163,49 @@
             this.mnuRelFinanceiro.Size = new System.Drawing.Size(200, 22);
             this.mnuRelFinanceiro.Text = "Financeiro";
             this.mnuRelFinanceiro.Click += new System.EventHandler(this.mnuRelFinanceiro_Click);
-            // 
+            //
+            // mnuFinanceiro
+            //
+            this.mnuFinanceiro.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuLancamentos});
+            this.mnuFinanceiro.Name = "mnuFinanceiro";
+            this.mnuFinanceiro.Size = new System.Drawing.Size(74, 20);
+            this.mnuFinanceiro.Text = "&Financeiro";
+            //
+            // mnuLancamentos
+            //
+            this.mnuLancamentos.Name = "mnuLancamentos";
+            this.mnuLancamentos.Size = new System.Drawing.Size(200, 22);
+            this.mnuLancamentos.Text = "Lançamentos";
+            this.mnuLancamentos.Click += new System.EventHandler(this.mnuLancamentos_Click);
+            //
+            // stsPrincipal
+            //
+            this.stsPrincipal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(246)))), ((int)(((byte)(244)))));
+            this.stsPrincipal.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.stsPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblUsuarioBarra});
+            this.stsPrincipal.Location = new System.Drawing.Point(0, 426);
+            this.stsPrincipal.Name = "stsPrincipal";
+            this.stsPrincipal.Size = new System.Drawing.Size(800, 24);
+            this.stsPrincipal.SizingGrip = false;
+            this.stsPrincipal.TabIndex = 1;
+            //
+            // lblUsuarioBarra
+            //
+            this.lblUsuarioBarra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblUsuarioBarra.Name = "lblUsuarioBarra";
+            this.lblUsuarioBarra.Size = new System.Drawing.Size(785, 19);
+            this.lblUsuarioBarra.Spring = true;
+            this.lblUsuarioBarra.Text = "Usuário:";
+            this.lblUsuarioBarra.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            //
             // FrmPrincipal
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.stsPrincipal);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
@@ -173,6 +216,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.stsPrincipal.ResumeLayout(false);
+            this.stsPrincipal.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +239,9 @@
         private System.Windows.Forms.ToolStripMenuItem mnuRelVendas;
         private System.Windows.Forms.ToolStripMenuItem mnuRelEstoque;
         private System.Windows.Forms.ToolStripMenuItem mnuRelFinanceiro;
+        private System.Windows.Forms.ToolStripMenuItem mnuFinanceiro;
+        private System.Windows.Forms.ToolStripMenuItem mnuLancamentos;
+        private System.Windows.Forms.StatusStrip stsPrincipal;
+        private System.Windows.Forms.ToolStripStatusLabel lblUsuarioBarra;
     }
 }
