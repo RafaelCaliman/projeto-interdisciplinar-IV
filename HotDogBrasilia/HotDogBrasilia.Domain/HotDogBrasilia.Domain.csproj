@@ -44,6 +44,7 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Fornecedor.cs" />
     <Compile Include="ItemVenda.cs" />
+    <Compile Include="LancamentoFinanceiro.cs" />
     <Compile Include="LinhaRelatorioEstoque.cs" />
     <Compile Include="LinhaRelatorioVenda.cs" />
     <Compile Include="Permissoes.cs" />

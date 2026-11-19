@@ -131,6 +131,18 @@
     <Compile Include="FrmVendas.Designer.cs">
       <DependentUpon>FrmVendas.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmLancamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLancamentos.Designer.cs">
+      <DependentUpon>FrmLancamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNovoLancamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNovoLancamento.Designer.cs">
+      <DependentUpon>FrmNovoLancamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRelatorioVendas.cs">
       <SubType>Form</SubType>
     </Compile>
