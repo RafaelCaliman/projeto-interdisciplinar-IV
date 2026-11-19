@@ -119,6 +119,12 @@
     <Compile Include="FrmProdutos.Designer.cs">
       <DependentUpon>FrmProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmFornecedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFornecedores.Designer.cs">
+      <DependentUpon>FrmFornecedores.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmVenda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +148,12 @@
     </Compile>
     <Compile Include="FrmNovoLancamento.Designer.cs">
       <DependentUpon>FrmNovoLancamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogAcoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogAcoes.Designer.cs">
+      <DependentUpon>FrmLogAcoes.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmRelatorioVendas.cs">
       <SubType>Form</SubType>

@@ -32,10 +32,13 @@
             this.mnuCadastros = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuProdutos = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFornecedores = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuVendas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNovaVenda = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuConsultarVendas = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSistema = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLogAcoes = new System.Windows.Forms.ToolStripMenuItem();
+            this.sepSistema = new System.Windows.Forms.ToolStripSeparator();
             this.mnuTrocarUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSair = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRelatorios = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,7 +71,8 @@
             // 
             this.mnuCadastros.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuClientes,
-            this.mnuProdutos});
+            this.mnuProdutos,
+            this.mnuFornecedores});
             this.mnuCadastros.Name = "mnuCadastros";
             this.mnuCadastros.Size = new System.Drawing.Size(71, 20);
             this.mnuCadastros.Text = "Cadastros";
@@ -86,6 +90,13 @@
             this.mnuProdutos.Size = new System.Drawing.Size(122, 22);
             this.mnuProdutos.Text = "Produtos";
             this.mnuProdutos.Click += new System.EventHandler(this.mnuProdutos_Click);
+            // 
+            // mnuFornecedores
+            // 
+            this.mnuFornecedores.Name = "mnuFornecedores";
+            this.mnuFornecedores.Size = new System.Drawing.Size(122, 22);
+            this.mnuFornecedores.Text = "Fornecedores";
+            this.mnuFornecedores.Click += new System.EventHandler(this.mnuFornecedores_Click);
             // 
             // mnuVendas
             // 
@@ -113,11 +124,25 @@
             // mnuSistema
             // 
             this.mnuSistema.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuLogAcoes,
+            this.sepSistema,
             this.mnuTrocarUsuario,
             this.mnuSair});
             this.mnuSistema.Name = "mnuSistema";
             this.mnuSistema.Size = new System.Drawing.Size(60, 20);
             this.mnuSistema.Text = "Sistema";
+            // 
+            // mnuLogAcoes
+            // 
+            this.mnuLogAcoes.Name = "mnuLogAcoes";
+            this.mnuLogAcoes.Size = new System.Drawing.Size(149, 22);
+            this.mnuLogAcoes.Text = "Log de ações";
+            this.mnuLogAcoes.Click += new System.EventHandler(this.mnuLogAcoes_Click);
+            // 
+            // sepSistema
+            // 
+            this.sepSistema.Name = "sepSistema";
+            this.sepSistema.Size = new System.Drawing.Size(146, 6);
             // 
             // mnuTrocarUsuario
             // 
@@ -229,10 +254,13 @@
         private System.Windows.Forms.ToolStripMenuItem mnuCadastros;
         private System.Windows.Forms.ToolStripMenuItem mnuClientes;
         private System.Windows.Forms.ToolStripMenuItem mnuProdutos;
+        private System.Windows.Forms.ToolStripMenuItem mnuFornecedores;
         private System.Windows.Forms.ToolStripMenuItem mnuVendas;
         private System.Windows.Forms.ToolStripMenuItem mnuNovaVenda;
         private System.Windows.Forms.ToolStripMenuItem mnuConsultarVendas;
         private System.Windows.Forms.ToolStripMenuItem mnuSistema;
+        private System.Windows.Forms.ToolStripMenuItem mnuLogAcoes;
+        private System.Windows.Forms.ToolStripSeparator sepSistema;
         private System.Windows.Forms.ToolStripMenuItem mnuTrocarUsuario;
         private System.Windows.Forms.ToolStripMenuItem mnuSair;
         private System.Windows.Forms.ToolStripMenuItem mnuRelatorios;

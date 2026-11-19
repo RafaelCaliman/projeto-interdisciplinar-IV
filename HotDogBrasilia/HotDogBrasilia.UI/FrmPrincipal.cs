@@ -61,12 +61,14 @@ namespace HotDogBrasilia.UI
         {
             bool podeClientes = Sessao.TemPermissao(Permissoes.ClienteVer);
             bool podeProdutos = Sessao.TemPermissao(Permissoes.ProdutoVer);
+            bool podeFornecedores = Sessao.TemPermissao(Permissoes.FornecedorVer);
 
             mnuClientes.Visible = podeClientes;
             mnuProdutos.Visible = podeProdutos;
+            mnuFornecedores.Visible = podeFornecedores;
 
             // Se nenhum item de Cadastros sobrou, esconde o menu inteiro.
-            mnuCadastros.Visible = podeClientes || podeProdutos;
+            mnuCadastros.Visible = podeClientes || podeProdutos || podeFornecedores;
 
             bool podeNovaVenda = Sessao.TemPermissao(Permissoes.VendaRegistrar);
             bool podeConsultarVendas = Sessao.TemPermissao(Permissoes.VendaVer);
@@ -80,6 +82,10 @@ namespace HotDogBrasilia.UI
             mnuFinanceiro.Visible = podeFinanceiro;
 
             mnuRelatorios.Visible = Sessao.TemPermissao(Permissoes.RelatorioVer);
+
+            bool podeLog = Sessao.TemPermissao(Permissoes.LogVer);
+            mnuLogAcoes.Visible = podeLog;
+            sepSistema.Visible = podeLog;
         }
 
         private void mnuClientes_Click(object sender, EventArgs e)
@@ -90,6 +96,12 @@ namespace HotDogBrasilia.UI
         private void mnuProdutos_Click(object sender, EventArgs e)
         {
             using (var f = new FrmProdutos()) { f.ShowDialog(this); }
+        }
+
+        private void mnuFornecedores_Click(object sender, EventArgs e)
+        {
+            if (!ControleAcesso.Verificar(Permissoes.FornecedorVer)) return;
+            using (var f = new FrmFornecedores()) { f.ShowDialog(this); }
         }
 
         private void mnuNovaVenda_Click(object sender, EventArgs e)
@@ -105,6 +117,12 @@ namespace HotDogBrasilia.UI
         private void mnuLancamentos_Click(object sender, EventArgs e)
         {
             using (var f = new FrmLancamentos()) { f.ShowDialog(this); }
+        }
+
+        private void mnuLogAcoes_Click(object sender, EventArgs e)
+        {
+            if (!ControleAcesso.Verificar(Permissoes.LogVer)) return;
+            using (var f = new FrmLogAcoes()) { f.ShowDialog(this); }
         }
 
         private void mnuRelVendas_Click(object sender, EventArgs e)
