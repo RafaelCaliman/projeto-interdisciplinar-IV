@@ -1,4 +1,4 @@
--- Hot-dog Brasília - banco de dados final (v6, estoque por insumo, 19/11/2026) - MySQL 8.0
+-- Hot-dog Brasília - banco de dados final (v6) - MySQL 8.0
 -- Projeto Interdisciplinar IV - UEMG, Unidade Frutal
 -- Alunos: Eduardo Pedro Batista, Guilherme da Silva Guerra, Luiz Guilherme Alves Almeida, Rafael Rosa Caliman
 
@@ -38,7 +38,6 @@ CREATE TABLE insumo (
     CHECK (estoque >= 0)
 );
 
--- receita: quanto de cada insumo um produto usa (produto sem receita usa produto.estoque)
 CREATE TABLE produto_insumo (
     id_produto INT NOT NULL,
     id_insumo INT NOT NULL,
@@ -145,8 +144,9 @@ BEGIN
     DECLARE v_valor DECIMAL(10,2);
     DECLARE v_msg VARCHAR(128);
     DECLARE v_insumo VARCHAR(100) DEFAULT NULL;
-    DECLARE v_disp INT;
-    DECLARE v_precisa INT;
+    DECLARE v_disp BIGINT;
+    DECLARE v_precisa BIGINT;
+    DECLARE v_ins INT;
 
     IF NEW.quantidade IS NULL OR NEW.quantidade <= 0 THEN
         SIGNAL SQLSTATE '45000'
@@ -159,18 +159,23 @@ BEGIN
     FOR UPDATE;
 
     IF EXISTS (SELECT 1 FROM produto_insumo WHERE id_produto = NEW.id_produto) THEN
-        SELECT i.nome, i.estoque, r.quantidade * NEW.quantidade
-        INTO v_insumo, v_disp, v_precisa
-        FROM produto_insumo r
-        JOIN insumo i ON i.id_insumo = r.id_insumo
-        WHERE r.id_produto = NEW.id_produto
-          AND i.estoque < r.quantidade * NEW.quantidade
-        ORDER BY i.id_insumo
-        LIMIT 1;
+        SET v_ins = (SELECT MIN(i.id_insumo)
+                     FROM produto_insumo r
+                     JOIN insumo i ON i.id_insumo = r.id_insumo
+                     WHERE r.id_produto = NEW.id_produto
+                       AND i.estoque < r.quantidade * NEW.quantidade);
 
-        IF v_insumo IS NOT NULL THEN
-            SET v_msg = LEFT(CONCAT('Insumo insuficiente para "', v_nome, '": falta ',
-                                    v_insumo, ' (disponível ', v_disp,
+        IF v_ins IS NOT NULL THEN
+            SELECT i.nome, i.estoque, r.quantidade * NEW.quantidade
+            INTO v_insumo, v_disp, v_precisa
+            FROM produto_insumo r
+            JOIN insumo i ON i.id_insumo = r.id_insumo
+            WHERE r.id_produto = NEW.id_produto
+              AND i.id_insumo = v_ins;
+
+            SET v_msg = LEFT(CONCAT('Insumo insuficiente para "', v_nome,
+                                    '": falta ', v_insumo,
+                                    ' (disponível ', v_disp,
                                     ', necessário ', v_precisa, ').'), 128);
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = v_msg;
         END IF;
@@ -187,17 +192,24 @@ BEGIN
 END //
 DELIMITER ;
 
--- RN07: baixa o estoque a cada item registrado (insumos da receita ou, sem receita, o próprio produto)
+-- RN07: baixa o estoque a cada item registrado
 DELIMITER //
 CREATE TRIGGER trg_item_venda_baixa_estoque
 AFTER INSERT ON item_venda
 FOR EACH ROW
 BEGIN
+    DECLARE v_ins INT;
+    DECLARE v_q INT;
+
     IF EXISTS (SELECT 1 FROM produto_insumo WHERE id_produto = NEW.id_produto) THEN
-        UPDATE insumo i
-        JOIN produto_insumo r ON r.id_insumo = i.id_insumo
-        SET i.estoque = i.estoque - r.quantidade * NEW.quantidade
-        WHERE r.id_produto = NEW.id_produto;
+        SET v_ins = (SELECT MIN(id_insumo) FROM produto_insumo WHERE id_produto = NEW.id_produto);
+        WHILE v_ins IS NOT NULL DO
+            SET v_q = (SELECT quantidade FROM produto_insumo
+                       WHERE id_produto = NEW.id_produto AND id_insumo = v_ins);
+            UPDATE insumo SET estoque = estoque - v_q * NEW.quantidade WHERE id_insumo = v_ins;
+            SET v_ins = (SELECT MIN(id_insumo) FROM produto_insumo
+                         WHERE id_produto = NEW.id_produto AND id_insumo > v_ins);
+        END WHILE;
     ELSE
         UPDATE produto
         SET estoque = estoque - NEW.quantidade
@@ -216,8 +228,9 @@ BEGIN
     DECLARE v_nome VARCHAR(100);
     DECLARE v_msg VARCHAR(128);
     DECLARE v_insumo VARCHAR(100) DEFAULT NULL;
-    DECLARE v_disp INT;
-    DECLARE v_precisa INT;
+    DECLARE v_disp BIGINT;
+    DECLARE v_precisa BIGINT;
+    DECLARE v_ins INT;
 
     IF NEW.id_produto <> OLD.id_produto OR NEW.id_venda <> OLD.id_venda THEN
         SIGNAL SQLSTATE '45000'
@@ -237,18 +250,23 @@ BEGIN
     FOR UPDATE;
 
     IF EXISTS (SELECT 1 FROM produto_insumo WHERE id_produto = NEW.id_produto) THEN
-        SELECT i.nome, i.estoque + r.quantidade * OLD.quantidade, r.quantidade * NEW.quantidade
-        INTO v_insumo, v_disp, v_precisa
-        FROM produto_insumo r
-        JOIN insumo i ON i.id_insumo = r.id_insumo
-        WHERE r.id_produto = NEW.id_produto
-          AND i.estoque + r.quantidade * OLD.quantidade < r.quantidade * NEW.quantidade
-        ORDER BY i.id_insumo
-        LIMIT 1;
+        SET v_ins = (SELECT MIN(i.id_insumo)
+                     FROM produto_insumo r
+                     JOIN insumo i ON i.id_insumo = r.id_insumo
+                     WHERE r.id_produto = NEW.id_produto
+                       AND i.estoque + r.quantidade * OLD.quantidade < r.quantidade * NEW.quantidade);
 
-        IF v_insumo IS NOT NULL THEN
-            SET v_msg = LEFT(CONCAT('Insumo insuficiente para "', v_nome, '": falta ',
-                                    v_insumo, ' (disponível ', v_disp,
+        IF v_ins IS NOT NULL THEN
+            SELECT i.nome, i.estoque + r.quantidade * OLD.quantidade, r.quantidade * NEW.quantidade
+            INTO v_insumo, v_disp, v_precisa
+            FROM produto_insumo r
+            JOIN insumo i ON i.id_insumo = r.id_insumo
+            WHERE r.id_produto = NEW.id_produto
+              AND i.id_insumo = v_ins;
+
+            SET v_msg = LEFT(CONCAT('Insumo insuficiente para "', v_nome,
+                                    '": falta ', v_insumo,
+                                    ' (disponível ', v_disp,
                                     ', necessário ', v_precisa, ').'), 128);
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = v_msg;
         END IF;
@@ -267,11 +285,19 @@ CREATE TRIGGER trg_item_venda_ajusta_estoque
 AFTER UPDATE ON item_venda
 FOR EACH ROW
 BEGIN
+    DECLARE v_ins INT;
+    DECLARE v_q INT;
+
     IF EXISTS (SELECT 1 FROM produto_insumo WHERE id_produto = NEW.id_produto) THEN
-        UPDATE insumo i
-        JOIN produto_insumo r ON r.id_insumo = i.id_insumo
-        SET i.estoque = i.estoque + r.quantidade * (OLD.quantidade - NEW.quantidade)
-        WHERE r.id_produto = NEW.id_produto;
+        SET v_ins = (SELECT MIN(id_insumo) FROM produto_insumo WHERE id_produto = NEW.id_produto);
+        WHILE v_ins IS NOT NULL DO
+            SET v_q = (SELECT quantidade FROM produto_insumo
+                       WHERE id_produto = NEW.id_produto AND id_insumo = v_ins);
+            UPDATE insumo SET estoque = estoque + v_q * (OLD.quantidade - NEW.quantidade)
+            WHERE id_insumo = v_ins;
+            SET v_ins = (SELECT MIN(id_insumo) FROM produto_insumo
+                         WHERE id_produto = NEW.id_produto AND id_insumo > v_ins);
+        END WHILE;
     ELSE
         UPDATE produto
         SET estoque = estoque + OLD.quantidade - NEW.quantidade
@@ -286,11 +312,18 @@ CREATE TRIGGER trg_item_venda_estorna_estoque
 AFTER DELETE ON item_venda
 FOR EACH ROW
 BEGIN
+    DECLARE v_ins INT;
+    DECLARE v_q INT;
+
     IF EXISTS (SELECT 1 FROM produto_insumo WHERE id_produto = OLD.id_produto) THEN
-        UPDATE insumo i
-        JOIN produto_insumo r ON r.id_insumo = i.id_insumo
-        SET i.estoque = i.estoque + r.quantidade * OLD.quantidade
-        WHERE r.id_produto = OLD.id_produto;
+        SET v_ins = (SELECT MIN(id_insumo) FROM produto_insumo WHERE id_produto = OLD.id_produto);
+        WHILE v_ins IS NOT NULL DO
+            SET v_q = (SELECT quantidade FROM produto_insumo
+                       WHERE id_produto = OLD.id_produto AND id_insumo = v_ins);
+            UPDATE insumo SET estoque = estoque + v_q * OLD.quantidade WHERE id_insumo = v_ins;
+            SET v_ins = (SELECT MIN(id_insumo) FROM produto_insumo
+                         WHERE id_produto = OLD.id_produto AND id_insumo > v_ins);
+        END WHILE;
     ELSE
         UPDATE produto
         SET estoque = estoque + OLD.quantidade
@@ -464,16 +497,20 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Fornecedor inválido ou não informado.';
     END IF;
 
-    UPDATE produto
-    SET nome = TRIM(p_nome),
-        valor = p_valor,
-        estoque = CASE
-                      WHEN EXISTS (SELECT 1 FROM produto_insumo r WHERE r.id_produto = p_id_produto)
-                      THEN estoque
-                      ELSE p_estoque
-                  END,
-        id_fornecedor = p_id_fornecedor
-    WHERE id_produto = p_id_produto;
+    IF EXISTS (SELECT 1 FROM produto_insumo WHERE id_produto = p_id_produto) THEN
+        UPDATE produto
+        SET nome = TRIM(p_nome),
+            valor = p_valor,
+            id_fornecedor = p_id_fornecedor
+        WHERE id_produto = p_id_produto;
+    ELSE
+        UPDATE produto
+        SET nome = TRIM(p_nome),
+            valor = p_valor,
+            estoque = p_estoque,
+            id_fornecedor = p_id_fornecedor
+        WHERE id_produto = p_id_produto;
+    END IF;
 END //
 DELIMITER ;
 
@@ -515,7 +552,6 @@ BEGIN
 END //
 DELIMITER ;
 
--- Insumo e receita (estoque por insumo, v6)
 DELIMITER //
 CREATE PROCEDURE sp_insumo_listar(
     IN p_busca VARCHAR(100)
@@ -546,7 +582,8 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Insumo já cadastrado.';
     END IF;
 
-    INSERT INTO insumo (nome, estoque) VALUES (TRIM(p_nome), p_estoque);
+    INSERT INTO insumo (nome, estoque)
+    VALUES (TRIM(p_nome), p_estoque);
 
     SET p_id_insumo = LAST_INSERT_ID();
 END //
@@ -570,11 +607,12 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Insumo já cadastrado.';
     END IF;
 
-    UPDATE insumo SET nome = TRIM(p_nome) WHERE id_insumo = p_id_insumo;
+    UPDATE insumo
+    SET nome = TRIM(p_nome)
+    WHERE id_insumo = p_id_insumo;
 END //
 DELIMITER ;
 
--- entrada soma ao estoque (compra ou reposição)
 DELIMITER //
 CREATE PROCEDURE sp_insumo_entrada(
     IN p_id_insumo  INT,
@@ -590,11 +628,12 @@ BEGIN
         SET MESSAGE_TEXT = 'Quantidade inválida: deve ser maior que zero.';
     END IF;
 
-    UPDATE insumo SET estoque = estoque + p_quantidade WHERE id_insumo = p_id_insumo;
+    UPDATE insumo
+    SET estoque = estoque + p_quantidade
+    WHERE id_insumo = p_id_insumo;
 END //
 DELIMITER ;
 
--- ajuste define o estoque pela contagem física
 DELIMITER //
 CREATE PROCEDURE sp_insumo_ajustar(
     IN p_id_insumo    INT,
@@ -610,7 +649,9 @@ BEGIN
         SET MESSAGE_TEXT = 'Estoque inválido: deve ser informado e não pode ser negativo.';
     END IF;
 
-    UPDATE insumo SET estoque = p_novo_estoque WHERE id_insumo = p_id_insumo;
+    UPDATE insumo
+    SET estoque = p_novo_estoque
+    WHERE id_insumo = p_id_insumo;
 END //
 DELIMITER ;
 
@@ -650,7 +691,6 @@ BEGIN
 END //
 DELIMITER ;
 
--- inclui o insumo na receita ou troca a quantidade
 DELIMITER //
 CREATE PROCEDURE sp_receita_definir(
     IN p_id_produto INT,
@@ -683,8 +723,9 @@ CREATE PROCEDURE sp_receita_remover(
     IN p_id_insumo  INT
 )
 BEGIN
-    IF NOT EXISTS (SELECT 1 FROM produto_insumo
-                   WHERE id_produto = p_id_produto AND id_insumo = p_id_insumo) THEN
+    IF p_id_produto IS NULL OR p_id_insumo IS NULL
+       OR NOT EXISTS (SELECT 1 FROM produto_insumo
+                      WHERE id_produto = p_id_produto AND id_insumo = p_id_insumo) THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Esse insumo não faz parte da receita do produto.';
     END IF;
@@ -1042,6 +1083,7 @@ BEGIN
     LEFT JOIN item_venda i ON i.id_venda = v.id_venda
     WHERE (p_data_ini IS NULL OR DATE(v.data_hora) >= p_data_ini)
       AND (p_data_fim IS NULL OR DATE(v.data_hora) <= p_data_fim)
+      AND EXISTS (SELECT 1 FROM financeiro f WHERE f.id_venda = v.id_venda)
     GROUP BY v.id_venda, v.data_hora, c.nome
     ORDER BY v.data_hora DESC, v.id_venda DESC;
 END //
@@ -1060,7 +1102,8 @@ BEGIN
     FROM venda v
     LEFT JOIN item_venda i ON i.id_venda = v.id_venda
     WHERE (p_data_ini IS NULL OR DATE(v.data_hora) >= p_data_ini)
-      AND (p_data_fim IS NULL OR DATE(v.data_hora) <= p_data_fim);
+      AND (p_data_fim IS NULL OR DATE(v.data_hora) <= p_data_fim)
+      AND EXISTS (SELECT 1 FROM financeiro f WHERE f.id_venda = v.id_venda);
 END //
 DELIMITER ;
 
@@ -1069,22 +1112,25 @@ CREATE PROCEDURE sp_relatorio_estoque(
     IN p_limite_baixo INT
 )
 BEGIN
-    SELECT x.id_produto, x.produto, x.estoque, x.fornecedor,
+    SELECT t.id_produto, t.nome AS produto, t.estoque,
+           t.fornecedor,
            CASE
-               WHEN x.estoque = 0 THEN 'ESGOTADO'
-               WHEN x.estoque <= COALESCE(p_limite_baixo, 10) THEN 'BAIXO'
+               WHEN t.estoque = 0 THEN 'ESGOTADO'
+               WHEN t.estoque <= COALESCE(p_limite_baixo, 10) THEN 'BAIXO'
                ELSE 'OK'
            END AS situacao
-    FROM (SELECT p.id_produto, p.nome AS produto,
-                 CASE WHEN c.disponivel IS NULL THEN p.estoque ELSE c.disponivel END AS estoque,
-                 f.nome AS fornecedor
-          FROM produto p
-          JOIN fornecedor f ON f.id_fornecedor = p.id_fornecedor
-          LEFT JOIN (SELECT r.id_produto, MIN(i.estoque DIV r.quantidade) AS disponivel
-                     FROM produto_insumo r
-                     JOIN insumo i ON i.id_insumo = r.id_insumo
-                     GROUP BY r.id_produto) c ON c.id_produto = p.id_produto) x
-    ORDER BY x.estoque, x.produto;
+    FROM (
+        SELECT p.id_produto, p.nome,
+               CASE WHEN c.disponivel IS NULL THEN p.estoque ELSE c.disponivel END AS estoque,
+               f.nome AS fornecedor
+        FROM produto p
+        JOIN fornecedor f ON f.id_fornecedor = p.id_fornecedor
+        LEFT JOIN (SELECT r.id_produto, MIN(i.estoque DIV r.quantidade) AS disponivel
+                   FROM produto_insumo r
+                   JOIN insumo i ON i.id_insumo = r.id_insumo
+                   GROUP BY r.id_produto) c ON c.id_produto = p.id_produto
+    ) t
+    ORDER BY t.estoque, t.nome;
 END //
 DELIMITER ;
 
@@ -1430,15 +1476,11 @@ INSERT INTO item_venda (quantidade, id_venda, id_produto) VALUES
 (3, 3, 1),
 (1, 3, 4);
 
--- Insumos e receitas (exemplo, a confirmar com o dono): inseridos depois das vendas do seed,
--- para as vendas antigas continuarem baixando produto.estoque (45, 39, 57 e 29)
 INSERT INTO insumo (nome, estoque) VALUES
 ('Pão', 45),
 ('Salsicha', 78),
 ('Molho', 45);
 
--- Hot-dog simples (id 1): 1 pão, 1 salsicha, 1 molho
--- Hot-dog duplo (id 2): 1 pão, 2 salsichas, 1 molho
 INSERT INTO produto_insumo (id_produto, id_insumo, quantidade) VALUES
 (1, 1, 1), (1, 2, 1), (1, 3, 1),
 (2, 1, 1), (2, 2, 2), (2, 3, 1);
