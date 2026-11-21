@@ -12,7 +12,7 @@ namespace HotDogBrasilia.UI
     // "Microsoft Print to PDF" para gerar o PDF.
     public class ImpressorTabela
     {
-        private static readonly CultureInfo Br = new CultureInfo("pt-BR");
+        private static readonly CultureInfo Br = new CultureInfo("pt-BR", false);
 
         private readonly DataTable _t;
         private readonly string _titulo, _sub;

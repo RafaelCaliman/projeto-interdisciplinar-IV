@@ -9,7 +9,7 @@ namespace HotDogBrasilia.UI
 {
     public partial class FrmVenda : Form
     {
-        private static readonly CultureInfo PtBr = new CultureInfo("pt-BR");
+        private static readonly CultureInfo PtBr = new CultureInfo("pt-BR", false);
 
         // Itens da venda em montagem. Só vão para o banco ao finalizar.
         private List<ItemVenda> carrinho = new List<ItemVenda>();

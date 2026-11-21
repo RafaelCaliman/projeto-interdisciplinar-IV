@@ -8,7 +8,7 @@ namespace HotDogBrasilia.UI
 {
     public partial class FrmVendas : Form
     {
-        private static readonly CultureInfo PtBr = new CultureInfo("pt-BR");
+        private static readonly CultureInfo PtBr = new CultureInfo("pt-BR", false);
         private readonly Timer timerStatus = new Timer { Interval = 4000 };
         private Venda vendaSelecionada = null;
 

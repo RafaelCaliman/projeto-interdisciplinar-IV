@@ -11,7 +11,7 @@ namespace HotDogBrasilia.UI
         private int idSelecionado = 0;
         private string nomeSelecionado = "";
         private bool podeGravar;
-        private static readonly CultureInfo PtBr = new CultureInfo("pt-BR");
+        private static readonly CultureInfo PtBr = new CultureInfo("pt-BR", false);
         private readonly Timer timerStatus = new Timer { Interval = 4000 };
 
         public FrmProdutos()

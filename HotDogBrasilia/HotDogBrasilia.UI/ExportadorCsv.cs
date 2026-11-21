@@ -11,7 +11,7 @@ namespace HotDogBrasilia.UI
     // UTF-8 com BOM, separador ";", decimais com vírgula e datas dd/MM/yyyy HH:mm.
     public static class ExportadorCsv
     {
-        private static readonly CultureInfo Br = new CultureInfo("pt-BR");
+        private static readonly CultureInfo Br = new CultureInfo("pt-BR", false);
 
         public static void Salvar(string caminho, DataTable t)
         {

@@ -29,7 +29,7 @@ namespace HotDogBrasilia.Data.Repositories
                     decimal total = concluirVenda(conn, tx, idVenda, statusPagamento);
 
                     LogRepository.registrar(conn, tx, idUsuario, "INSERIR", "venda", idVenda,
-                        itens.Count + " item(ns) - total R$ " + total.ToString("N2", new System.Globalization.CultureInfo("pt-BR")));
+                        itens.Count + " item(ns) - total R$ " + total.ToString("N2", new System.Globalization.CultureInfo("pt-BR", false)));
 
                     tx.Commit();
                     return new Venda { IdVenda = idVenda, Total = total };

@@ -13,7 +13,7 @@ namespace HotDogBrasilia.UI
     public partial class FrmRelatorioEstoque : Form
     {
         private const int LimitePadrao = 10;
-        private static readonly CultureInfo PtBr = new CultureInfo("pt-BR");
+        private static readonly CultureInfo PtBr = new CultureInfo("pt-BR", false);
         private readonly Timer timerStatus = new Timer { Interval = 5000 };
         private readonly Font negrito = new Font("Segoe UI", 10F, FontStyle.Bold);
         private DataTable tabela = CriarTabela();

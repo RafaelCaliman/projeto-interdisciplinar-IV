@@ -19,7 +19,7 @@ namespace HotDogBrasilia.UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var ptBr = new CultureInfo("pt-BR");
+            var ptBr = new CultureInfo("pt-BR", false);
             CultureInfo.DefaultThreadCurrentCulture = ptBr;
             CultureInfo.DefaultThreadCurrentUICulture = ptBr;
             Thread.CurrentThread.CurrentCulture = ptBr;

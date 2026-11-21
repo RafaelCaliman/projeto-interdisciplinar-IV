@@ -7,7 +7,7 @@ namespace HotDogBrasilia.UI
 {
     public partial class FrmNovoLancamento : Form
     {
-        private static readonly CultureInfo PtBr = new CultureInfo("pt-BR");
+        private static readonly CultureInfo PtBr = new CultureInfo("pt-BR", false);
 
         private static readonly string[] TiposTexto = { "A receber", "A pagar" };
         private static readonly string[] TiposValor = { "RECEBER", "PAGAR" };

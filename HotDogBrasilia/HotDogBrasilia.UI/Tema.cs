@@ -91,7 +91,7 @@ namespace HotDogBrasilia.UI
         public static void ColunaMoeda(DataGridViewColumn c)
         {
             c.DefaultCellStyle.Format = "C2";
-            c.DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("pt-BR");
+            c.DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("pt-BR", false);
             c.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             c.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
         }

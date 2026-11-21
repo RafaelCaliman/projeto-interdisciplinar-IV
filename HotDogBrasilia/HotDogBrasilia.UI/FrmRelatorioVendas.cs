@@ -11,7 +11,7 @@ namespace HotDogBrasilia.UI
     // RF13: vendas por período, com resumo (quantidade, total e ticket médio).
     public partial class FrmRelatorioVendas : Form
     {
-        private static readonly CultureInfo PtBr = new CultureInfo("pt-BR");
+        private static readonly CultureInfo PtBr = new CultureInfo("pt-BR", false);
         private readonly Timer timerStatus = new Timer { Interval = 5000 };
         private DataTable tabela = CriarTabela();
         private string filtrosGerados = "Período: todos";
