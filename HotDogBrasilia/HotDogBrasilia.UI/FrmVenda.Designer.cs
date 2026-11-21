@@ -272,7 +272,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmVenda";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "claude ";
+            this.Text = "Hot-dog Brasília - Nova venda";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmVenda_FormClosing);
             this.Load += new System.EventHandler(this.FrmVenda_Load);
             this.pnlTopo.ResumeLayout(false);
