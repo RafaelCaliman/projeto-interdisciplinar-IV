@@ -38,8 +38,17 @@ namespace HotDogBrasilia.UI
                 return;
             }
 
+            Tema.Dica(txtBusca, "parte do nome do fornecedor");
             AplicarPermissoes();
             CarregarGrade(null);
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (AtalhosCadastro.Processar(this, keyData, btnNovo, btnSalvar, btnExcluir,
+                    () => CarregarGrade(idSelecionado == 0 ? (int?)null : idSelecionado), txtNome))
+                return true;
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void FrmFornecedores_Shown(object sender, EventArgs e)
@@ -197,6 +206,7 @@ namespace HotDogBrasilia.UI
             catch (Exception ex)
             {
                 Erros.Mostrar(ex);
+                txtNome.Focus();
             }
             finally
             {

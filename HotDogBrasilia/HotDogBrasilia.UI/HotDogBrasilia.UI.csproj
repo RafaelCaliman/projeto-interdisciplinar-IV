@@ -203,6 +203,7 @@
     </Compile>
     <Compile Include="ExportadorCsv.cs" />
     <Compile Include="ImpressorTabela.cs" />
+    <Compile Include="AtalhosCadastro.cs" />
     <Compile Include="Tema.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

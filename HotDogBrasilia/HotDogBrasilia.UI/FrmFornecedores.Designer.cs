@@ -52,11 +52,12 @@ namespace HotDogBrasilia.UI
             this.lblBusca.Name = "lblBusca";
             this.lblBusca.Size = new System.Drawing.Size(113, 19);
             this.lblBusca.TabIndex = 0;
-            this.lblBusca.Text = "Buscar por nome:";
+            this.lblBusca.Text = "&Buscar por nome:";
             //
             // txtBusca
             //
             this.txtBusca.Location = new System.Drawing.Point(20, 109);
+            this.txtBusca.AccessibleName = "Buscar fornecedor por nome";
             this.txtBusca.MaxLength = 100;
             this.txtBusca.Name = "txtBusca";
             this.txtBusca.Size = new System.Drawing.Size(300, 23);
@@ -70,11 +71,12 @@ namespace HotDogBrasilia.UI
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(48, 19);
             this.lblNome.TabIndex = 2;
-            this.lblNome.Text = "Nome:";
+            this.lblNome.Text = "&Nome:";
             //
             // txtNome
             //
             this.txtNome.Location = new System.Drawing.Point(20, 169);
+            this.txtNome.AccessibleName = "Nome do fornecedor";
             this.txtNome.MaxLength = 100;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(300, 23);
@@ -120,6 +122,7 @@ namespace HotDogBrasilia.UI
             this.dgvFornecedores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvFornecedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFornecedores.Location = new System.Drawing.Point(20, 254);
+            this.dgvFornecedores.AccessibleName = "Lista de fornecedores";
             this.dgvFornecedores.MultiSelect = false;
             this.dgvFornecedores.Name = "dgvFornecedores";
             this.dgvFornecedores.ReadOnly = true;
