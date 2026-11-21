@@ -11,6 +11,7 @@ namespace HotDogBrasilia.UI
         private readonly int idProduto;
         private readonly string nomeProduto;
         private readonly Timer timerStatus = new Timer { Interval = 4000 };
+        private DateTime ultimaGravacao = DateTime.MinValue;
 
         public bool Alterou { get; private set; }
 
@@ -32,6 +33,14 @@ namespace HotDogBrasilia.UI
             };
             dgvReceita.Resize += (s, e) => PosicionarVazio();
             FormClosed += (s, e) => timerStatus.Dispose();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (AtalhosCadastro.Processar(this, keyData, null, btnDefinir, btnRemover,
+                    CarregarGrade, cboInsumo, nudQuantidade))
+                return true;
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void FrmReceita_Load(object sender, EventArgs e)
@@ -121,6 +130,7 @@ namespace HotDogBrasilia.UI
         private void btnDefinir_Click(object sender, EventArgs e)
         {
             if (!ControleAcesso.Verificar(Permissoes.ProdutoGravar)) return;
+            if ((DateTime.Now - ultimaGravacao).TotalMilliseconds < 800) return;
 
             var insumo = cboInsumo.SelectedItem as Insumo;
             if (insumo == null)
@@ -147,9 +157,11 @@ namespace HotDogBrasilia.UI
             catch (Exception ex)
             {
                 Erros.Mostrar(ex);
+                nudQuantidade.Focus();
             }
             finally
             {
+                ultimaGravacao = DateTime.Now;
                 btnDefinir.Enabled = true;
             }
         }

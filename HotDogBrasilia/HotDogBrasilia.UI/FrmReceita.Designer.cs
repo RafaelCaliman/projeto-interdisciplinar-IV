@@ -58,11 +58,12 @@ namespace HotDogBrasilia.UI
             this.lblInsumo.Name = "lblInsumo";
             this.lblInsumo.Size = new System.Drawing.Size(56, 19);
             this.lblInsumo.TabIndex = 1;
-            this.lblInsumo.Text = "Insumo:";
+            this.lblInsumo.Text = "&Insumo:";
             //
             // cboInsumo
             //
             this.cboInsumo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboInsumo.AccessibleName = "Insumo da receita";
             this.cboInsumo.Location = new System.Drawing.Point(20, 67);
             this.cboInsumo.Name = "cboInsumo";
             this.cboInsumo.Size = new System.Drawing.Size(220, 25);
@@ -75,10 +76,11 @@ namespace HotDogBrasilia.UI
             this.lblQuantidade.Name = "lblQuantidade";
             this.lblQuantidade.Size = new System.Drawing.Size(80, 19);
             this.lblQuantidade.TabIndex = 3;
-            this.lblQuantidade.Text = "Quantidade:";
+            this.lblQuantidade.Text = "&Quantidade:";
             //
             // nudQuantidade
             //
+            this.nudQuantidade.AccessibleName = "Quantidade por unidade";
             this.nudQuantidade.Location = new System.Drawing.Point(255, 67);
             this.nudQuantidade.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             this.nudQuantidade.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
@@ -104,6 +106,7 @@ namespace HotDogBrasilia.UI
             this.dgvReceita.AllowUserToDeleteRows = false;
             this.dgvReceita.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvReceita.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReceita.AccessibleName = "Insumos da receita";
             this.dgvReceita.Location = new System.Drawing.Point(20, 110);
             this.dgvReceita.MultiSelect = false;
             this.dgvReceita.Name = "dgvReceita";
