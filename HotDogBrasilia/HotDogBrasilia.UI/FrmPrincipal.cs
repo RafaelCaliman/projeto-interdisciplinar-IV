@@ -91,11 +91,13 @@ namespace HotDogBrasilia.UI
 
         private void mnuClientes_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.Verificar(Permissoes.ClienteVer)) return;
             using (var f = new FrmClientes()) { f.ShowDialog(this); }
         }
 
         private void mnuProdutos_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.Verificar(Permissoes.ProdutoVer)) return;
             using (var f = new FrmProdutos()) { f.ShowDialog(this); }
         }
 
@@ -118,6 +120,7 @@ namespace HotDogBrasilia.UI
 
         private void mnuConsultarVendas_Click(object sender, EventArgs e)
         {
+            if (!ControleAcesso.Verificar(Permissoes.VendaVer)) return;
             using (var f = new FrmVendas()) { f.ShowDialog(this); }
         }
 
