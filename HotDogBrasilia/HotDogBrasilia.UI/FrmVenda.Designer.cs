@@ -272,7 +272,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmVenda";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aude ";
+            this.Text = "claude ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmVenda_FormClosing);
             this.Load += new System.EventHandler(this.FrmVenda_Load);
             this.pnlTopo.ResumeLayout(false);
