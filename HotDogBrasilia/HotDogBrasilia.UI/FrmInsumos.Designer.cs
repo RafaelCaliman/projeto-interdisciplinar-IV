@@ -57,11 +57,12 @@ namespace HotDogBrasilia.UI
             this.lblBusca.Name = "lblBusca";
             this.lblBusca.Size = new System.Drawing.Size(113, 19);
             this.lblBusca.TabIndex = 0;
-            this.lblBusca.Text = "Buscar por nome:";
+            this.lblBusca.Text = "&Buscar por nome:";
             //
             // txtBusca
             //
             this.txtBusca.Location = new System.Drawing.Point(20, 109);
+            this.txtBusca.AccessibleName = "Buscar insumo por nome";
             this.txtBusca.MaxLength = 100;
             this.txtBusca.Name = "txtBusca";
             this.txtBusca.Size = new System.Drawing.Size(300, 23);
@@ -75,11 +76,12 @@ namespace HotDogBrasilia.UI
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(48, 19);
             this.lblNome.TabIndex = 2;
-            this.lblNome.Text = "Nome:";
+            this.lblNome.Text = "&Nome:";
             //
             // txtNome
             //
             this.txtNome.Location = new System.Drawing.Point(20, 169);
+            this.txtNome.AccessibleName = "Nome do insumo";
             this.txtNome.MaxLength = 100;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(300, 23);
@@ -92,10 +94,11 @@ namespace HotDogBrasilia.UI
             this.lblEstoque.Name = "lblEstoque";
             this.lblEstoque.Size = new System.Drawing.Size(98, 19);
             this.lblEstoque.TabIndex = 4;
-            this.lblEstoque.Text = "Estoque inicial:";
+            this.lblEstoque.Text = "&Estoque inicial:";
             //
             // nudEstoque
             //
+            this.nudEstoque.AccessibleName = "Estoque do insumo";
             this.nudEstoque.Location = new System.Drawing.Point(340, 169);
             this.nudEstoque.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             this.nudEstoque.Name = "nudEstoque";
@@ -164,6 +167,7 @@ namespace HotDogBrasilia.UI
             this.dgvInsumos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvInsumos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInsumos.Location = new System.Drawing.Point(20, 254);
+            this.dgvInsumos.AccessibleName = "Lista de insumos";
             this.dgvInsumos.MultiSelect = false;
             this.dgvInsumos.Name = "dgvInsumos";
             this.dgvInsumos.ReadOnly = true;

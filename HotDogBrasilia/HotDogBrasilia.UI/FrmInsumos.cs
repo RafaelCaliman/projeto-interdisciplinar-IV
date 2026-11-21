@@ -47,6 +47,14 @@ namespace HotDogBrasilia.UI
             CarregarGrade(null);
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (AtalhosCadastro.Processar(this, keyData, btnNovo, btnSalvar, btnExcluir,
+                    () => CarregarGrade(idSelecionado == 0 ? (int?)null : idSelecionado), txtNome, nudEstoque))
+                return true;
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void FrmInsumos_Shown(object sender, EventArgs e)
         {
             txtNome.Focus();
@@ -68,7 +76,7 @@ namespace HotDogBrasilia.UI
         private void AtualizarCampoEstoque()
         {
             nudEstoque.Enabled = podeGravar && idSelecionado == 0;
-            lblEstoque.Text = idSelecionado == 0 ? "Estoque inicial:" : "Estoque atual:";
+            lblEstoque.Text = idSelecionado == 0 ? "&Estoque inicial:" : "&Estoque atual:";
         }
 
         private void CarregarGrade(int? idSelecionar)
@@ -228,6 +236,7 @@ namespace HotDogBrasilia.UI
             catch (Exception ex)
             {
                 Erros.Mostrar(ex);
+                txtNome.Focus();
             }
             finally
             {
