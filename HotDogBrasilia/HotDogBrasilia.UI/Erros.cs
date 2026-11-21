@@ -11,6 +11,7 @@ namespace HotDogBrasilia.UI
         private const int ErroDaRegra = 1644;      // SIGNAL das procedures (mensagem já em português)
         private const int SemConexao = 1042;       // MySQL desligado ou endereço errado
         private const int AcessoNegado = 1045;     // usuário/senha da conexão errados
+        private const int BancoInexistente = 1049;
 
         public static void Mostrar(Exception ex)
         {
@@ -34,7 +35,11 @@ namespace HotDogBrasilia.UI
 
                 if (erroMySql.Number == AcessoNegado)
                     return "O banco de dados recusou o acesso.\n"
-                        + "Confira o usuário e a senha em ConexaoBanco.cs.";
+                        + "Confira o usuário e a senha no arquivo HotDogBrasilia.UI.exe.config.";
+
+                if (erroMySql.Number == BancoInexistente)
+                    return "O banco de dados hotdog_brasilia não foi encontrado.\n"
+                        + "Rode o script do banco (v6) no MySQL ou confira o nome do banco no arquivo HotDogBrasilia.UI.exe.config.";
 
                 return "Ocorreu um erro no banco de dados. Tente novamente.";
             }
