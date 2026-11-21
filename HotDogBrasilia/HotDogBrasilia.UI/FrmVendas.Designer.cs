@@ -32,6 +32,7 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblSubtitulo = new System.Windows.Forms.Label();
             this.lblInicio = new System.Windows.Forms.Label();
+            this.lblDicaFiltro = new System.Windows.Forms.Label();
             this.dtpInicio = new System.Windows.Forms.DateTimePicker();
             this.lblFim = new System.Windows.Forms.Label();
             this.dtpFim = new System.Windows.Forms.DateTimePicker();
@@ -92,13 +93,23 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             //
+            // lblDicaFiltro
+            //
+            this.lblDicaFiltro.AutoSize = true;
+            this.lblDicaFiltro.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblDicaFiltro.ForeColor = System.Drawing.Color.DimGray;
+            this.lblDicaFiltro.Location = new System.Drawing.Point(20, 138);
+            this.lblDicaFiltro.Name = "lblDicaFiltro";
+            this.lblDicaFiltro.TabIndex = 20;
+            this.lblDicaFiltro.Text = "Marque a caixa da data para usá-la. Desmarcada = sem limite naquele lado do período.";
+            //
             // dgvVendas
             //
             this.dgvVendas.AllowUserToAddRows = false;
             this.dgvVendas.AllowUserToDeleteRows = false;
             this.dgvVendas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVendas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVendas.Location = new System.Drawing.Point(20, 152);
+            this.dgvVendas.Location = new System.Drawing.Point(20, 172);
             this.dgvVendas.MultiSelect = false;
             this.dgvVendas.Name = "dgvVendas";
             this.dgvVendas.ReadOnly = true;
@@ -111,7 +122,7 @@
             // lblItens
             //
             this.lblItens.AutoSize = true;
-            this.lblItens.Location = new System.Drawing.Point(20, 354);
+            this.lblItens.Location = new System.Drawing.Point(20, 374);
             this.lblItens.Name = "lblItens";
             this.lblItens.Size = new System.Drawing.Size(178, 19);
             this.lblItens.TabIndex = 6;
@@ -123,7 +134,7 @@
             this.dgvItens.AllowUserToDeleteRows = false;
             this.dgvItens.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvItens.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvItens.Location = new System.Drawing.Point(20, 376);
+            this.dgvItens.Location = new System.Drawing.Point(20, 396);
             this.dgvItens.MultiSelect = false;
             this.dgvItens.Name = "dgvItens";
             this.dgvItens.ReadOnly = true;
@@ -134,7 +145,7 @@
             //
             // btnCancelarVenda
             //
-            this.btnCancelarVenda.Location = new System.Drawing.Point(20, 517);
+            this.btnCancelarVenda.Location = new System.Drawing.Point(20, 537);
             this.btnCancelarVenda.Name = "btnCancelarVenda";
             this.btnCancelarVenda.Size = new System.Drawing.Size(140, 32);
             this.btnCancelarVenda.TabIndex = 8;
@@ -146,7 +157,7 @@
             //
             this.lblStatus.AutoSize = true;
             this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(110)))), ((int)(((byte)(46)))));
-            this.lblStatus.Location = new System.Drawing.Point(175, 524);
+            this.lblStatus.Location = new System.Drawing.Point(175, 544);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 19);
             this.lblStatus.TabIndex = 9;
@@ -187,13 +198,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(246)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(760, 567);
+            this.ClientSize = new System.Drawing.Size(760, 587);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnCancelarVenda);
             this.Controls.Add(this.dgvItens);
             this.Controls.Add(this.lblItens);
             this.Controls.Add(this.dgvVendas);
             this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.lblDicaFiltro);
             this.Controls.Add(this.dtpFim);
             this.Controls.Add(this.lblFim);
             this.Controls.Add(this.dtpInicio);
@@ -221,6 +233,7 @@
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblSubtitulo;
         private System.Windows.Forms.Label lblInicio;
+        private System.Windows.Forms.Label lblDicaFiltro;
         private System.Windows.Forms.DateTimePicker dtpInicio;
         private System.Windows.Forms.Label lblFim;
         private System.Windows.Forms.DateTimePicker dtpFim;
