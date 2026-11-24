@@ -11,7 +11,6 @@ namespace HotDogBrasilia.UI
     {
         private static readonly CultureInfo PtBr = new CultureInfo("pt-BR", false);
 
-        // Itens da venda em montagem. Só vão para o banco ao finalizar.
         private List<ItemVenda> carrinho = new List<ItemVenda>();
 
         private int? idClienteBalcao = null;
@@ -85,7 +84,6 @@ namespace HotDogBrasilia.UI
                 cboCliente.SelectedValue = idClienteBalcao.Value;
         }
 
-        // Recarrega os produtos para mostrar o estoque atualizado.
         private void CarregarProdutos()
         {
             cboProduto.DisplayMember = "Nome";
@@ -97,9 +95,6 @@ namespace HotDogBrasilia.UI
 
         private void AtualizarCarrinho()
         {
-            // Liga a grade a uma CÓPIA da lista. Se ligar sempre na mesma lista,
-            // o Windows Forms guarda a posição antiga (-1, de quando estava vazia)
-            // e o clique na linha dá o erro "O índice -1 não tem um valor".
             dgvItens.DataSource = null;
             dgvItens.DataSource = new List<ItemVenda>(carrinho);
             if (dgvItens.Columns.Contains("IdItem"))
@@ -155,7 +150,6 @@ namespace HotDogBrasilia.UI
 
             int quantidade = (int)nudQuantidade.Value;
 
-            // Se o produto já está no carrinho, só soma a quantidade.
             ItemVenda item = carrinho.Find(i => i.IdProduto == produto.IdProduto);
             if (item == null)
             {
@@ -199,7 +193,6 @@ namespace HotDogBrasilia.UI
                 int? idCliente = cboCliente.SelectedValue == null
                     ? (int?)null : (int)cboCliente.SelectedValue;
 
-                // O banco valida cliente, itens e estoque. Se algo falhar, nada é gravado.
                 Venda venda = VendaRepository.registrarVenda(idCliente, carrinho,
                     cboPagamento.Text, Sessao.Usuario.IdUser);
 
@@ -226,7 +219,6 @@ namespace HotDogBrasilia.UI
                 NovaVenda();
         }
 
-        // Avisa antes de fechar a tela com itens que ainda não foram gravados.
         private void FrmVenda_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (carrinho.Count == 0) return;

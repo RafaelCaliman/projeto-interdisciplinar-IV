@@ -4,8 +4,6 @@ using System.Windows.Forms;
 
 namespace HotDogBrasilia.UI
 {
-    // Cartão de indicador usado no resumo dos relatórios:
-    // faixa colorida à esquerda, título pequeno e valor grande.
     public class CartaoResumo : Control
     {
         private string _titulo = "Indicador";

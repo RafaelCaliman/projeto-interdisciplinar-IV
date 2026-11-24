@@ -3,10 +3,8 @@ using HotDogBrasilia.Domain;
 
 namespace HotDogBrasilia.UI
 {
-    // Ajuda as telas a conferir a permissão antes de executar uma ação.
     public static class ControleAcesso
     {
-        // Retorna true se o usuário logado pode; senão avisa e retorna false.
         public static bool Verificar(string codigo)
         {
             if (Sessao.TemPermissao(codigo))

@@ -14,7 +14,6 @@ namespace HotDogBrasilia.UI
             InitializeComponent();
         }
 
-        // Já abre com o cursor no campo de usuário.
         private void FrmLogin_Shown(object sender, EventArgs e)
         {
             txtLogin.Focus();
@@ -25,13 +24,11 @@ namespace HotDogBrasilia.UI
             txtSenha.UseSystemPasswordChar = !chkMostrarSenha.Checked;
         }
 
-        // Some com o aviso assim que o usuário volta a digitar.
         private void Campos_TextChanged(object sender, EventArgs e)
         {
             lblMensagem.Text = "";
         }
 
-        // O Enter também chama este botão (AcceptButton do formulário).
         private void btnEntrar_Click(object sender, EventArgs e)
         {
             lblMensagem.Text = "";
@@ -50,7 +47,6 @@ namespace HotDogBrasilia.UI
                 return;
             }
 
-            // Mostra que está trabalhando e evita clique duplo.
             btnEntrar.Enabled = false;
             btnEntrar.Text = "Entrando...";
             Cursor = Cursors.WaitCursor;
@@ -58,11 +54,9 @@ namespace HotDogBrasilia.UI
 
             try
             {
-                // Quem confere a senha é o banco (sp_usuario_autenticar).
                 UsuarioLogado = UsuarioRepository.Auth(txtLogin.Text.Trim(), txtSenha.Text);
                 if (UsuarioLogado != null)
                 {
-                    // Carrega as permissões do perfil e guarda na sessão antes de abrir o sistema.
                     var codigos = PermissaoRepository.listarCodigos(UsuarioLogado.IdUser);
                     Sessao.Iniciar(UsuarioLogado, codigos);
                     DialogResult = DialogResult.OK;
@@ -75,7 +69,6 @@ namespace HotDogBrasilia.UI
             }
             catch (Exception ex)
             {
-                // Ex.: "Login ou senha inválidos." ou "Usuário inativo..." vindos do banco.
                 lblMensagem.Text = Erros.Texto(ex);
                 LimparSenha();
             }
@@ -89,7 +82,7 @@ namespace HotDogBrasilia.UI
 
         private void LimparSenha()
         {
-            txtSenha.TextChanged -= Campos_TextChanged;   // não apagar o aviso agora
+            txtSenha.TextChanged -= Campos_TextChanged;
             txtSenha.Clear();
             txtSenha.TextChanged += Campos_TextChanged;
             txtSenha.Focus();

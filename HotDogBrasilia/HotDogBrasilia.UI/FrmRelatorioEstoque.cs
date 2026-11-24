@@ -9,7 +9,6 @@ using HotDogBrasilia.Domain;
 
 namespace HotDogBrasilia.UI
 {
-    // RF14: estoque por produto, com situação OK, BAIXO ou ESGOTADO.
     public partial class FrmRelatorioEstoque : Form
     {
         private const int LimitePadrao = 10;
@@ -78,7 +77,6 @@ namespace HotDogBrasilia.UI
             g.Columns["Situação"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
-        // A cor só reforça: a situação sempre aparece escrita (acessibilidade).
         private void dgvEstoque_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.RowIndex < 0 || dgvEstoque.Columns[e.ColumnIndex].Name != "Situação") return;
@@ -97,7 +95,6 @@ namespace HotDogBrasilia.UI
             }
         }
 
-        // Só aceita dígitos (e as teclas de edição, como Backspace).
         private void txtLimite_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))

@@ -7,7 +7,6 @@ using HotDogBrasilia.Domain;
 
 namespace HotDogBrasilia.UI
 {
-    // RF11, RF12, RF15: entradas, saídas e saldo do período.
     public partial class FrmRelatorioFinanceiro : Form
     {
         private static readonly CultureInfo PtBr = new CultureInfo("pt-BR", false);
@@ -44,7 +43,6 @@ namespace HotDogBrasilia.UI
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        // CSV e impressão em duas colunas: Indicador;Valor.
         private static DataTable CriarTabela()
         {
             var t = new DataTable("Financeiro");
@@ -113,7 +111,6 @@ namespace HotDogBrasilia.UI
             }
         }
 
-        // Saldo negativo aparece com sinal de menos e em vermelho; a cor só reforça.
         private static void Mostrar(CartaoResumo card, decimal valor, bool ehSaldo)
         {
             card.Valor = valor.ToString("C2", PtBr);

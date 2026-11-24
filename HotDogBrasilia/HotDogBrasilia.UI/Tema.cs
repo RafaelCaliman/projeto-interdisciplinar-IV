@@ -4,8 +4,6 @@ using System.Windows.Forms;
 
 namespace HotDogBrasilia.UI
 {
-    // Cores e ajustes visuais comuns, para as telas parecerem da mesma família
-    // (mesmo vermelho da tela de login).
     public static class Tema
     {
         public static readonly Color Vermelho = Color.FromArgb(196, 48, 43);
@@ -19,7 +17,6 @@ namespace HotDogBrasilia.UI
         public static readonly Color AmbarFundo = Color.FromArgb(255, 236, 179);
         public static readonly Color VermelhoFundo = Color.FromArgb(255, 205, 205);
 
-        // Grade somente leitura, linha inteira selecionada e cabeçalho em negrito.
         public static void Grade(DataGridView g)
         {
             g.ReadOnly = true;
@@ -87,7 +84,6 @@ namespace HotDogBrasilia.UI
             aplicar(b, System.EventArgs.Empty);
         }
 
-        // Coluna de moeda: formato R$ e alinhada à direita.
         public static void ColunaMoeda(DataGridViewColumn c)
         {
             c.DefaultCellStyle.Format = "C2";
@@ -96,7 +92,6 @@ namespace HotDogBrasilia.UI
             c.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
-        // Texto de dica dentro do TextBox (o .NET Framework não tem PlaceholderText).
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         private static extern System.IntPtr SendMessage(System.IntPtr h, int msg, int wp, string lp);
         private const int EM_SETCUEBANNER = 0x1501;

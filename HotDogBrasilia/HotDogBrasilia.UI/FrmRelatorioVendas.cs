@@ -8,7 +8,6 @@ using HotDogBrasilia.Domain;
 
 namespace HotDogBrasilia.UI
 {
-    // RF13: vendas por período, com resumo (quantidade, total e ticket médio).
     public partial class FrmRelatorioVendas : Form
     {
         private static readonly CultureInfo PtBr = new CultureInfo("pt-BR", false);
@@ -27,7 +26,6 @@ namespace HotDogBrasilia.UI
 
         private void FrmRelatorioVendas_Load(object sender, EventArgs e)
         {
-            // Segunda camada: o menu já esconde, mas a tela confere de novo.
             if (!ControleAcesso.Verificar(Permissoes.RelatorioVer))
             {
                 BeginInvoke(new Action(Close));
@@ -39,8 +37,6 @@ namespace HotDogBrasilia.UI
             Gerar();
         }
 
-        // Atalhos: F5 gera, Ctrl+E exporta, Ctrl+P imprime (Enter e Esc já vêm
-        // do AcceptButton e do CancelButton).
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             switch (keyData)
@@ -114,7 +110,6 @@ namespace HotDogBrasilia.UI
                 AtualizarVazio();
                 dgvVendas.ClearSelection();
 
-                // Resultado vazio não é erro: o aviso aparece sobre a grade.
                 if (linhas.Count > 0)
                     MostrarStatus(linhas.Count + (linhas.Count == 1 ? " venda encontrada." : " vendas encontradas."), false);
                 else
@@ -181,7 +176,6 @@ namespace HotDogBrasilia.UI
             PosicionarVazio();
         }
 
-        // O aviso de "nenhum registro" fica sobre a grade, logo abaixo do cabeçalho.
         private void PosicionarVazio()
         {
             lblVazio.Bounds = new Rectangle(dgvVendas.Left + 1,

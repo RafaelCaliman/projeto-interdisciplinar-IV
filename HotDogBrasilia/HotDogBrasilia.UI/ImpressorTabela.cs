@@ -7,9 +7,6 @@ using System.Windows.Forms;
 
 namespace HotDogBrasilia.UI
 {
-    // Imprime qualquer DataTable com título, subtítulo e número de página.
-    // Abre a pré-visualização; de lá o usuário imprime ou escolhe
-    // "Microsoft Print to PDF" para gerar o PDF.
     public class ImpressorTabela
     {
         private static readonly CultureInfo Br = new CultureInfo("pt-BR", false);
@@ -105,7 +102,6 @@ namespace HotDogBrasilia.UI
             return c.DataType == typeof(decimal) || c.DataType == typeof(int);
         }
 
-        // Mesma formatação da tela e do CSV (moeda e data em pt-BR).
         private static string Texto(object v)
         {
             if (v == null || v == DBNull.Value) return "";

@@ -38,7 +38,6 @@ namespace HotDogBrasilia.UI
             }
         }
 
-        // Desliga os botões que o usuário logado não pode usar.
         private void AplicarPermissoes()
         {
             bool podeGravar = Sessao.TemPermissao(Permissoes.ClienteGravar);

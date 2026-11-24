@@ -131,7 +131,6 @@ namespace HotDogBrasilia.UI
             }
             catch (Exception ex)
             {
-                // Ex.: outra pessoa cancelou esta venda enquanto a tela estava aberta.
                 Erros.Mostrar(ex);
                 CarregarVendas();
             }
@@ -163,7 +162,6 @@ namespace HotDogBrasilia.UI
 
             try
             {
-                // O banco recusa venda inexistente (ex.: já cancelada por outra pessoa).
                 VendaRepository.cancelarVenda(vendaSelecionada.IdVenda,
                     Sessao.Usuario.IdUser, resumo);
                 MostrarStatus("Venda #" + vendaSelecionada.IdVenda + " cancelada.");

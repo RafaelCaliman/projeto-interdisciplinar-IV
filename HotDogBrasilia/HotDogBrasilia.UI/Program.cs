@@ -25,16 +25,12 @@ namespace HotDogBrasilia.UI
             Thread.CurrentThread.CurrentCulture = ptBr;
             Thread.CurrentThread.CurrentUICulture = ptBr;
 
-            // Rede de segurança: qualquer erro não tratado nas telas vira uma
-            // mensagem, em vez de fechar o programa.
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.ThreadException += (s, e) => Erros.Mostrar(e.Exception);
 
-            // Erros fora das telas (outras threads): ao menos avisa o usuário.
             AppDomain.CurrentDomain.UnhandledException +=
                 (s, e) => Erros.Mostrar(e.ExceptionObject as Exception);
 
-            // Repete enquanto o usuário escolher "Trocar usuário".
             while (true)
             {
                 using (FrmLogin login = new FrmLogin())

@@ -1,6 +1,5 @@
 ﻿namespace HotDogBrasilia.Domain
 {
-    // Um produto dentro de uma venda (linha do carrinho ou item já gravado).
     public class ItemVenda
     {
         public int IdItem { get; set; }

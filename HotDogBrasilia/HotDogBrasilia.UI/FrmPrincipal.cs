@@ -14,7 +14,6 @@ namespace HotDogBrasilia.UI
 {
     public partial class FrmPrincipal : Form
     {
-        // O Program.cs lê esta propriedade para saber se volta para o login.
         public bool TrocarUsuario { get; private set; }
 
         public FrmPrincipal()
@@ -46,8 +45,6 @@ namespace HotDogBrasilia.UI
             Close();
         }
 
-        // Vale para "Sair", "Trocar usuário" e para o X da janela:
-        // registra a saída e limpa a sessão do usuário.
         private void FrmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (Sessao.Usuario == null) return;
@@ -56,7 +53,6 @@ namespace HotDogBrasilia.UI
             Sessao.Encerrar();
         }
 
-        // Esconde os menus que o usuário logado não pode acessar.
         private void AplicarPermissoes()
         {
             bool podeClientes = Sessao.TemPermissao(Permissoes.ClienteVer);
@@ -68,7 +64,6 @@ namespace HotDogBrasilia.UI
             mnuInsumos.Visible = podeProdutos;
             mnuFornecedores.Visible = podeFornecedores;
 
-            // Se nenhum item de Cadastros sobrou, esconde o menu inteiro.
             mnuCadastros.Visible = podeClientes || podeProdutos || podeFornecedores;
 
             bool podeNovaVenda = Sessao.TemPermissao(Permissoes.VendaRegistrar);

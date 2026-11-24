@@ -8,10 +8,6 @@ namespace HotDogBrasilia.Data.Repositories
 {
     public static class VendaRepository
     {
-        // Grava a venda inteira de uma vez, dentro de uma transação:
-        // cria a venda, inclui os itens (o banco valida e baixa o estoque),
-        // conclui (calcula o total e lança no financeiro) e registra o log.
-        // Se qualquer passo falhar, o Rollback desfaz tudo, inclusive o estoque.
         public static Venda registrarVenda(int? idCliente, List<ItemVenda> itens,
                                            string statusPagamento, int idUsuario)
         {
@@ -42,8 +38,6 @@ namespace HotDogBrasilia.Data.Repositories
             }
         }
 
-        // Cancela a venda (o banco devolve o estoque) e registra o log junto.
-        // O detalhe guarda cliente e total, porque a venda é apagada do banco.
         public static void cancelarVenda(int idVenda, int idUsuario, string detalhe)
         {
             using (var conn = ConexaoBanco.ObterConexao())

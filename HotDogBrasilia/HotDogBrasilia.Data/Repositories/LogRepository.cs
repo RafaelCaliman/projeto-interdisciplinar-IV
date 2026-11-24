@@ -6,11 +6,8 @@ using HotDogBrasilia.Domain;
 
 namespace HotDogBrasilia.Data.Repositories
 {
-    // Grava no log_acao quem fez o quê (a data/hora o banco preenche sozinho).
     public static class LogRepository
     {
-        // Usa a conexão e a transação de quem chamou: assim o log é salvo
-        // junto com a ação, ou desfeito junto com ela se algo der errado.
         public static void registrar(MySqlConnection conn, MySqlTransaction tx, int idUsuario,
                                      string acao, string entidade, int? idRegistro, string detalhe)
         {
@@ -26,7 +23,6 @@ namespace HotDogBrasilia.Data.Repositories
             }
         }
 
-        // Versão simples, para quando não existe transação aberta.
         public static void registrar(int idUsuario, string acao, string entidade,
                                      int? idRegistro, string detalhe)
         {

@@ -6,11 +6,8 @@ using HotDogBrasilia.Domain;
 
 namespace HotDogBrasilia.UI
 {
-    // Exportar CSV e imprimir, do mesmo jeito nos três relatórios.
-    // Também grava no log quem exportou/imprimiu (falha no log não impede a ação).
     public static class AcoesRelatorio
     {
-        // Ex.: "Período: 01/05/2026 a 31/05/2026 · Gerado em 03/11/2026 14:35 por admin"
         public static string Subtitulo(string filtros)
         {
             string usuario = Sessao.Usuario != null ? Sessao.Usuario.Login : "";
@@ -26,7 +23,6 @@ namespace HotDogBrasilia.UI
             return "Período: " + de + " a " + ate;
         }
 
-        // Retorna o caminho salvo, ou null se o usuário cancelou ou deu erro.
         public static string ExportarCsv(IWin32Window dono, DataTable t, string nomeBase,
                                          string tipo, string filtros)
         {
